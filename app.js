@@ -93,4 +93,93 @@
       }
     });
   });
+  /* Voices — single quote stage rotator */
+  var stage = document.getElementById('voiceStage');
+  if (stage) {
+    var slides = Array.prototype.slice.call(stage.querySelectorAll('.voice-slide'));
+    var dotsBox = document.getElementById('voiceDots');
+    var bar = document.getElementById('voiceBar');
+    var idxEl = document.getElementById('voiceIndex');
+    var totalEl = document.getElementById('voiceTotal');
+    var DUR = 7000, idx = 0, timer = null, holding = false;
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    totalEl.textContent = pad(slides.length);
+    var dots = slides.map(function (_, i) {
+      var d = document.createElement('button');
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-label', 'Show testimonial ' + (i + 1));
+      d.addEventListener('click', function () { show(i); restart(); });
+      dotsBox.appendChild(d);
+      return d;
+    });
+    function restartBar() {
+      bar.classList.remove('run', 'hold');
+      void bar.offsetWidth;
+      if (!reduceMotion && !holding) bar.classList.add('run');
+    }
+    function show(n) {
+      n = (n + slides.length) % slides.length;
+      if (n === idx && slides[idx].classList.contains('is-active')) return;
+      var prev = slides[idx];
+      prev.classList.remove('is-active');
+      prev.classList.add('is-leaving');
+      prev.setAttribute('aria-hidden', 'true');
+      setTimeout(function () { prev.classList.remove('is-leaving'); }, 650);
+      idx = n;
+      var cur = slides[idx];
+      cur.classList.add('is-active');
+      cur.setAttribute('aria-hidden', 'false');
+      dots.forEach(function (d, i) {
+        d.classList.toggle('is-on', i === idx);
+        d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      });
+      idxEl.textContent = pad(idx + 1);
+      restartBar();
+    }
+    function next() { show(idx + 1); }
+    function prev() { show(idx - 1); }
+    function play() {
+      stop();
+      if (reduceMotion) return;
+      timer = setInterval(next, DUR);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); play(); }
+    function hold(on) {
+      holding = on;
+      bar.classList.toggle('hold', on);
+      if (on) stop(); else play();
+    }
+    document.getElementById('voicePrev').addEventListener('click', function () { prev(); restart(); });
+    document.getElementById('voiceNext').addEventListener('click', function () { next(); restart(); });
+    stage.addEventListener('mouseenter', function () { hold(true); });
+    stage.addEventListener('mouseleave', function () { hold(false); });
+    stage.addEventListener('focusin', function () { hold(true); });
+    stage.addEventListener('focusout', function () { hold(false); });
+    stage.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { next(); restart(); }
+      else if (e.key === 'ArrowLeft') { prev(); restart(); }
+    });
+    var tx = null;
+    stage.addEventListener('touchstart', function (e) {
+      tx = e.touches[0].clientX;
+      hold(true);
+    }, { passive: true });
+    stage.addEventListener('touchend', function (e) {
+      if (tx !== null) {
+        var dx = e.changedTouches[0].clientX - tx;
+        if (dx < -40) next();
+        else if (dx > 40) prev();
+      }
+      tx = null;
+      hold(false);
+    }, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else play();
+    });
+    dots[0].classList.add('is-on');
+    dots[0].setAttribute('aria-selected', 'true');
+    restartBar();
+    play();
+  }
 })();
