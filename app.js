@@ -153,10 +153,7 @@
   (function () {
     var combos = [
       { id: 'prime', name: 'Prime Time', display: "'Oswald',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
-      { id: 'network', name: 'Network', display: "'Bebas Neue',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
-      { id: 'marquee', name: 'Marquee', display: "'Anton',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
-      { id: 'spartan', name: 'Spartan', display: "'League Spartan',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'current', name: 'Current Site', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
       { id: 'mulish', name: 'Mulish', display: "'Mulish',system-ui,sans-serif", body: "'Mulish',system-ui,sans-serif" },
       { id: 'roboto', name: 'Roboto', display: "'Roboto',system-ui,sans-serif", body: "'Roboto',system-ui,sans-serif" },
@@ -172,7 +169,7 @@
       fontsLoaded = true;
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=League+Spartan:wght@700;800&family=Montserrat:wght@400;500;700;800&family=Mulish:wght@400;600;700;800&family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Mulish:wght@400;600;700;800&family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap';
       document.head.appendChild(l);
     }
     function apply(id) {
