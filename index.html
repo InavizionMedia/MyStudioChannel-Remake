@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Studio Channel — Your Channel. On Air.</title>
 <meta name="description" content="We build studio-style websites that give creators the look and structure of a major network — powered by a custom plugin, built once and owned by you.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="My Studio Channel — Your Channel. On Air.">
+<meta property="og:description" content="Studio-style websites for creators. Look like a real network — built once, owned forever.">
+<meta property="og:image" content="assets/hero-studio-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -426,7 +431,29 @@
         <a href="tel:+13363031658">(336) 303-1658</a>
         <a href="mailto:Admin@MyStudioChannel.com">Admin@MyStudioChannel.com</a>
       </div>
-      <a class="btn btn-ink" href="mailto:Admin@MyStudioChannel.com">Start With A Consultation ↗</a>
+      <form class="cta-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <label>Your name
+            <input type="text" name="name" required placeholder="Jane Creator" autocomplete="name">
+          </label>
+          <label>Email
+            <input type="email" name="email" required placeholder="you@email.com" autocomplete="email">
+          </label>
+        </div>
+        <label>Which package
+          <select name="package" id="packageSelect">
+            <option>Not sure yet</option>
+            <option>Creator Launch</option>
+            <option>Studio Pro</option>
+            <option>Network Platform</option>
+          </select>
+        </label>
+        <label>What are you launching?
+          <textarea name="project" rows="4" placeholder="Your channel, your content, your goals…"></textarea>
+        </label>
+        <button class="btn btn-ink" type="submit">Send Inquiry <span aria-hidden="true">→</span></button>
+        <p class="form-note">Submitting opens your email app with everything filled in — addressed straight to us.</p>
+      </form>
     </div>
   </section>
 

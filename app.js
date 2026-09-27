@@ -67,6 +67,58 @@
     });
   }
 
+  /* Scroll-spy — highlight the nav link for the section in view */
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-desktop a[data-nav]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.remove('is-active'); });
+          var a = map[en.target.id];
+          if (a) a.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    Object.keys(map).forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) obs.observe(s);
+    });
+  })();
+
+  /* Contact form — no backend on a static page, so compose a mailto */
+  (function () {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+    var pkg = document.getElementById('packageSelect');
+    var nameInput = form.querySelector('input[name="name"]');
+    var emailInput = form.querySelector('input[name="email"]');
+    var projectInput = form.querySelector('textarea[name="project"]');
+    document.querySelectorAll('.pkg-cta').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var card = a.closest('.pkg');
+        var h3 = card && card.querySelector('h3');
+        if (pkg && h3) pkg.value = h3.textContent.trim();
+      });
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = nameInput.value.trim();
+      var email = emailInput.value.trim();
+      if (!name || !/.+@.+\..+/.test(email)) {
+        (name ? emailInput : nameInput).focus();
+        return;
+      }
+      var subject = 'Consultation inquiry — ' + pkg.value;
+      var body = 'Name: ' + name + '\nEmail: ' + email + '\nPackage: ' + pkg.value +
+        '\n\nWhat I\'m launching:\n' + projectInput.value.trim();
+      window.location.href = 'mailto:Admin@MyStudioChannel.com?subject=' +
+        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  })();
+
   /* Mobile overlay menu */
   var burger = document.getElementById('burger');
   var overlay = document.getElementById('menuOverlay');

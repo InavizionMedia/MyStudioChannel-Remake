@@ -63,12 +63,13 @@ section{position:relative}
 .wordmark-mark{width:1.7rem;height:1.7rem;object-fit:cover;border-radius:2px;flex:none}
 .wordmark .gold-w{color:var(--gold)}
 footer .wordmark-mark{width:2.3rem;height:2.3rem}
-.onair{display:inline-flex;align-items:center;gap:.55rem;background:var(--gold);color:var(--ink);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.1rem;border-radius:999px;text-decoration:none}
+.onair{display:inline-flex;align-items:center;gap:.55rem;background:var(--gold);color:var(--ink);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.1rem;border-radius:2px;text-decoration:none}
 .onair .dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--ink);animation:pulse 1.6s linear infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
 .nav-desktop{display:none;gap:2rem;align-items:center}
 .nav-desktop a{font-size:.85rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--smoke);text-decoration:none;transition:color 200ms var(--ease);position:relative}
 .nav-desktop a:hover{color:var(--gold)}
+.nav-desktop a.is-active{color:var(--gold)}
 .nav-desktop>a::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 300ms var(--ease)}
 .nav-desktop>a:hover::after,.nav-desktop>a.is-selected::after{transform:scaleX(1)}
 .nav-desktop>a.is-selected{color:var(--gold)}
@@ -217,8 +218,7 @@ body.loaded .hero-controls{opacity:1;transform:none}
 .pkg-cta{margin-top:1.6rem;justify-content:center;width:100%;border-radius:2px}
 .pkg.popular .pkg-cta{background:var(--ink);color:var(--gold)}
 .pkg.popular .pkg-cta:hover{background:#000;color:var(--gold)}
-.pkg-note{margin-top:2.2rem;font-size:.95rem;color:var(--smoke);text-align:center}
-.pkg.popular{border:2px solid var(--gold)}
+.pkg-note{margin-top:2.2rem;font-size:.95rem;color:var(--smoke);text-align:center}.pkg.popular{border:2px solid var(--gold)}
 
 /* ---------- demos : arrow + counter nav system ---------- */
 .demo-controls{display:flex;align-items:center;gap:1.4rem;margin-top:2.4rem}
@@ -313,6 +313,18 @@ body.loaded .hero-controls{opacity:1;transform:none}
 .cta-gold .cta-lines a:hover{color:#000;text-decoration:underline}
 .btn-ink{background:var(--ink);color:var(--gold)}
 .btn-ink:hover{background:#000;color:var(--gold)}
+
+/* ---------- contact form (gold band -> ink inputs) ---------- */
+.cta-form{margin-top:2.4rem;width:100%;max-width:38rem;display:grid;gap:1.1rem;text-align:left}
+.cta-form .form-row{display:grid;gap:1.1rem}
+.cta-form label{display:grid;gap:.45rem;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.cta-form input,.cta-form select,.cta-form textarea{background:var(--ink);border:1px solid var(--ink);border-radius:2px;color:var(--bone);font-family:var(--font-body);font-size:1rem;padding:.95rem 1.1rem;width:100%;letter-spacing:0;text-transform:none;font-weight:400}
+.cta-form textarea{resize:vertical;min-height:7rem}
+.cta-form input::placeholder,.cta-form textarea::placeholder{color:rgba(246,242,233,.45)}
+.cta-form input:focus,.cta-form select:focus,.cta-form textarea:focus{outline:2px solid #000;outline-offset:2px}
+.cta-form .btn{justify-content:center}
+.form-note{margin:0;font-size:.9rem;color:rgba(10,10,11,.72);text-align:center;letter-spacing:0;text-transform:none;font-weight:400}
+@media (min-width:640px){.cta-form .form-row{grid-template-columns:1fr 1fr}}
 
 /* ---------- footer ---------- */
 footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
