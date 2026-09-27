@@ -159,13 +159,30 @@ body.loaded .hero .cta-row{opacity:1;transform:none}
 .step h3{font-size:1.4rem;margin:.6rem 0 .5rem}
 .step p{font-size:1rem}
 
-/* ---------- voices ---------- */
-.quotes{display:grid;gap:1.5rem;margin-top:3rem}
-.quote{background:var(--coal);border:1px solid var(--line);border-radius:2px;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1.2rem}
-.quote p{font-size:1.02rem;color:var(--bone)}
-.quote .who{margin-top:auto}
-.quote .who strong{display:block;color:var(--gold);font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
-.quote .who span{font-size:.85rem;color:var(--smoke)}
+/* ---------- voices : single quote stage ---------- */
+.voice-stage{margin-top:3rem;max-width:56rem;margin-left:auto;margin-right:auto;text-align:center;outline:none}
+.voice-mark{font-family:var(--font-display);font-weight:700;font-size:clamp(4rem,10vw,6.5rem);line-height:.6;color:var(--gold);opacity:.85;margin-bottom:1.6rem}
+.voice-viewport{display:grid;margin-bottom:2.2rem}
+.voice-slide{grid-area:1/1;opacity:0;transform:translateY(26px);transition:opacity 620ms var(--ease),transform 620ms var(--ease);pointer-events:none;min-width:0}
+.voice-slide.is-active{opacity:1;transform:none;pointer-events:auto}
+.voice-slide.is-leaving{opacity:0;transform:translateY(-20px)}
+.voice-slide p{font-size:clamp(1.35rem,4.6vw,2.05rem);line-height:1.42;color:var(--bone);font-weight:400;margin:0 0 1.8rem}
+.voice-slide footer{display:flex;flex-direction:column;gap:.3rem;align-items:center}
+.voice-slide footer strong{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--gold);font-size:1rem}
+.voice-slide footer span{font-size:.9rem;color:var(--smoke)}
+.voice-progress{height:2px;background:var(--line);margin:0 auto 1.8rem;max-width:22rem;overflow:hidden}
+.voice-progress span{display:block;height:100%;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left}
+.voice-progress span.run{animation:voicefill 7s linear forwards}
+.voice-progress span.hold{animation-play-state:paused}
+@keyframes voicefill{to{transform:scaleX(1)}}
+.voice-controls{display:flex;align-items:center;justify-content:center;gap:1.4rem}
+.voice-arrow{width:3rem;height:3rem;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--bone);font-size:1.15rem;cursor:pointer;transition:border-color 200ms var(--ease),color 200ms var(--ease),background 200ms var(--ease);display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.voice-arrow:hover{border-color:var(--gold);color:var(--gold)}
+.voice-dots{display:flex;gap:.7rem}
+.voice-dots button{width:.6rem;height:.6rem;border-radius:50%;border:0;background:var(--line);cursor:pointer;padding:0;transition:background 250ms var(--ease),transform 250ms var(--ease)}
+.voice-dots button:hover{background:var(--smoke)}
+.voice-dots button.is-on{background:var(--gold);transform:scale(1.25)}
+.voice-count{margin-top:1.4rem;font-size:.8rem;letter-spacing:.28em;color:var(--smoke);font-weight:500}
 
 /* ---------- faq ---------- */
 .faq-list{margin-top:3rem;max-width:52rem}
@@ -201,7 +218,6 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 2rem}
 @media (min-width:760px){
   .pillars{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}
-  .quotes{grid-template-columns:1fr 1fr}
 }
 @media (min-width:860px){
   .burger{display:none}
@@ -237,5 +253,6 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 2rem}
   .grain{display:none}
   .onair .dot{animation:none}
   .faq-a{transition:none}
+  .voice-slide,.voice-slide.is-leaving{transition:none;transform:none}
   .menu-overlay a{opacity:1;transform:none;transition:none}
 }
