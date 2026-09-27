@@ -155,11 +155,8 @@
       { id: 'prime', name: 'Prime Time', display: "'Oswald',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
       { id: 'current', name: 'Current Site', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
-      { id: 'mulish', name: 'Mulish', display: "'Mulish',system-ui,sans-serif", body: "'Mulish',system-ui,sans-serif" },
       { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" },
-      { id: 'lato', name: 'Lato', display: "'Lato',system-ui,sans-serif", body: "'Lato',system-ui,sans-serif" },
-      { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" },
-      { id: 'robotoslab', name: 'Roboto Slab', display: "'Roboto Slab',Georgia,serif", body: "'Roboto Slab',Georgia,serif" }
+      { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" }
     ];
     var btn = document.getElementById('fontlabBtn');
     var panel = document.getElementById('fontlabPanel');
@@ -171,7 +168,7 @@
       fontsLoaded = true;
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Mulish:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700;900&family=DM+Sans:wght@400;500;700&family=Roboto+Slab:wght@400;600;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap';
       document.head.appendChild(l);
     }
     function apply(id) {
@@ -180,7 +177,7 @@
       c = c || combos[0];
       document.documentElement.style.setProperty('--font-display', c.display);
       document.documentElement.style.setProperty('--font-body', c.body);
-      try { localStorage.setItem('ptFontCombo', c.id); } catch (e) {}
+      try { localStorage.setItem('ptFontCombo2', c.id); } catch (e) {}
       list.querySelectorAll('.fontlab-opt').forEach(function (b) {
         b.classList.toggle('is-active', b.getAttribute('data-combo') === c.id);
       });
@@ -199,9 +196,9 @@
       panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     });
     var saved = null;
-    try { saved = localStorage.getItem('ptFontCombo'); } catch (e) {}
+    try { saved = localStorage.getItem('ptFontCombo2'); } catch (e) {}
     if (saved) { loadFonts(); }
-    apply(saved || 'prime');
+    apply(saved || 'poppins');
   })();
 
   /* Scroll-spy — highlight the nav link for the section in view */

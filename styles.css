@@ -8,8 +8,8 @@
   --smoke:#A8A29A;
   --line:rgba(246,242,233,0.14);
   --ease:cubic-bezier(0.16,1,0.3,1);
-  --font-display:'Oswald',Impact,sans-serif;
-  --font-body:'Inter',system-ui,sans-serif;
+  --font-display:'Poppins',system-ui,sans-serif;
+  --font-body:'Poppins',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -460,7 +460,6 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 
 /* ---------- mobile menu : gold email + icon ---------- */
 .menu-foot a[href^="mailto:"]{color:var(--gold);font-weight:600}
-.menu-foot a[href^="mailto:"]::before{content:"\2709\0020";font-size:.9em}
 
 /* ---------- back to top : iphone safe-area clearance ---------- */
 .to-top{bottom:calc(1.4rem + env(safe-area-inset-bottom,0px))}
