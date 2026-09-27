@@ -154,7 +154,7 @@
     var combos = [
       { id: 'prime', name: 'Prime Time', display: "'Oswald',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
-      { id: 'current', name: 'Current Site', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
+      { id: 'montserrat', name: 'Montserrat', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
       { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" },
       { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" }
     ];
@@ -177,7 +177,7 @@
       c = c || combos[0];
       document.documentElement.style.setProperty('--font-display', c.display);
       document.documentElement.style.setProperty('--font-body', c.body);
-      try { localStorage.setItem('ptFontCombo2', c.id); } catch (e) {}
+      try { localStorage.setItem('ptFontCombo3', c.id); } catch (e) {}
       list.querySelectorAll('.fontlab-opt').forEach(function (b) {
         b.classList.toggle('is-active', b.getAttribute('data-combo') === c.id);
       });
@@ -196,9 +196,9 @@
       panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     });
     var saved = null;
-    try { saved = localStorage.getItem('ptFontCombo2'); } catch (e) {}
+    try { saved = localStorage.getItem('ptFontCombo3'); } catch (e) {}
     if (saved) { loadFonts(); }
-    apply(saved || 'poppins');
+    apply(saved || 'montserrat');
   })();
 
   /* Scroll-spy — highlight the nav link for the section in view */
