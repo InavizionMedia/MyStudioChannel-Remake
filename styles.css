@@ -70,7 +70,7 @@ section{position:relative}
 .wordmark-mark{width:1.7rem;height:1.7rem;object-fit:cover;border-radius:2px;flex:none}
 .wordmark .gold-w{color:var(--gold)}
 footer .wordmark-mark{width:2.3rem;height:2.3rem}
-.onair{display:inline-flex;align-items:center;gap:.55rem;background:var(--gold);color:var(--ink);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.1rem;border-radius:2px;text-decoration:none}
+.onair{display:inline-flex;align-items:center;gap:.55rem;background:var(--gold);color:var(--ink);font-weight:600;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.1rem;border-radius:2px;text-decoration:none;white-space:nowrap}
 .onair .dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--ink);animation:pulse 1.6s linear infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
 .nav-desktop{display:none;gap:2rem;align-items:center}
@@ -405,11 +405,12 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 }
 @media (max-width:859px){
   .nav-desktop{display:none}
-  .topbar .onair{padding:.5rem .85rem;font-size:.62rem;letter-spacing:.16em}
+  .topbar .onair{padding:.5rem .85rem;font-size:.62rem;letter-spacing:.16em;flex:none}
   .topbar .onair .dot{width:.45rem;height:.45rem}
 }
 @media (max-width:420px){
-  .wordmark{font-size:.85rem}
+  .wordmark{font-size:.8rem;letter-spacing:.04em;gap:.45rem}
+  .topbar .onair{padding:.5rem .7rem}
   .hero-content{padding-top:5.5rem;padding-bottom:3rem}
   .hero h1{font-size:clamp(2rem,9.5vw,2.8rem)}
   .hero .sub{margin-top:1.2rem}
@@ -502,6 +503,14 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 .godmenu[hidden]{display:none}
 .godmenu.opening{animation:godSpring 320ms cubic-bezier(.2,.9,.25,1.2);transform-origin:bottom left}
 @keyframes godSpring{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+/* mobile : gear docks bottom-right (clears the hero slide counter); submenus expand in-flow */
+@media(max-width:640px){
+  .settings-btn{left:auto;right:1rem}
+  .godmenu{left:auto;right:1rem;max-width:calc(100vw - 2rem)}
+  .godmenu.opening{transform-origin:bottom right}
+  .godmenu-row{flex-wrap:wrap}
+  .godmenu-sub{position:static;flex:1 1 100%;margin:.35rem 0 0;background:transparent;border:0;box-shadow:none;padding:0;min-width:0}
+}
 .godmenu-sub{position:absolute;left:calc(100% + 6px);top:-7px;transform-origin:top left}
 .godmenu-label{padding:.55rem .8rem .3rem;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,242,233,.42);cursor:default}
 .godmenu-sep{border:0;border-top:1px solid var(--line);margin:5px 4px}
