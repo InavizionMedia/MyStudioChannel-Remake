@@ -205,7 +205,9 @@
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
       { id: 'montserrat', name: 'Montserrat', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
       { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" },
-      { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" }
+      { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" },
+      { id: 'jonbeatz', name: 'JonBeatz', display: "'Syne',system-ui,sans-serif", body: "'Inter',system-ui,sans-serif" },
+      { id: 'jonbeatzmono', name: 'JonBeatz Mono', display: "'IBM Plex Mono',ui-monospace,monospace", body: "'IBM Plex Mono',ui-monospace,monospace" }
     ];
     var activeCombo = 'montserrat';
     var fontsLoaded = false;
@@ -214,7 +216,7 @@
       fontsLoaded = true;
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Syne:wght@400..800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap';
       document.head.appendChild(l);
     }
     function applyCombo(id) {
