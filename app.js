@@ -70,6 +70,30 @@
     paint();
   })();
 
+  /* Hero parallax — slide imagery drifts slower than the scroll, copy drifts least */
+  (function () {
+    var hero = document.getElementById('heroSlider');
+    var slides = hero && hero.querySelector('.hero-slides');
+    var content = hero && hero.querySelector('.hero-content');
+    if (!hero || !slides || reduceMotion) return;
+    var ticking = false;
+    function paint() {
+      ticking = false;
+      var r = hero.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) {
+        var y = Math.max(0, Math.min(window.scrollY, r.height));
+        slides.style.transform = 'translate3d(0,' + (y * 0.28).toFixed(1) + 'px,0) scale(1.06)';
+        if (content) content.style.transform = 'translate3d(0,' + (y * 0.12).toFixed(1) + 'px,0)';
+      }
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    paint();
+  })();
+
   /* Top bar state */
   var topbar = document.getElementById('topbar');
   function onScroll() {
