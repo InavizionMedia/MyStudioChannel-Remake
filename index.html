@@ -94,6 +94,10 @@
       <div class="hero-slide"><img src="assets/hero-studio-4.jpg" alt="Close-up of a video production switcher with glowing buttons"></div>
     </div>
     <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="hero-dip" aria-hidden="true"></div>
+    <div class="hero-rail hero-rail-left" aria-hidden="true"><div class="rail-track"><span>Your Content — Your Channel — Your Studio —&nbsp;</span><span>Your Content — Your Channel — Your Studio —&nbsp;</span></div></div>
+    <div class="hero-rail hero-rail-right" aria-hidden="true"><span class="rail-word">Scroll to explore</span><span class="rail-trackline"><i></i></span></div>
     <div class="wrap hero-content">
       <div class="hero-copies">
         <div class="hero-copy is-active">
@@ -145,13 +149,9 @@
       </div>
       <p class="hero-count" aria-hidden="true"><span id="heroIndex">01</span> / 04</p>
     </div>
-    <!-- dev font lab : pick a type combo, locked in on winner -->
-    <button class="fontlab-btn" id="fontlabBtn" aria-label="Open font lab" title="Font lab (dev)">Aa</button>
-    <div class="fontlab-panel" id="fontlabPanel" aria-hidden="true">
-      <p class="fontlab-title">Font lab <span>dev</span></p>
-      <div class="fontlab-list" id="fontlabList"></div>
-      <p class="fontlab-note">Tap a combo to preview it live. Tell me the winner and I'll lock it in.</p>
-    </div>
+    <!-- dev settings : preview slideshow modes + type combos, locked in on winner -->
+    <button class="settings-btn" id="settingsBtn" aria-label="Preview settings" aria-haspopup="menu" aria-expanded="false" title="Preview settings (dev)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    <div class="godmenu" id="settingsMenu" role="menu" aria-label="Preview settings" hidden></div>
   </section>
 
   <!-- ② STATS (Laocoon merge: outlined stat boxes) -->
@@ -501,8 +501,6 @@
   </div>
 </footer>
 
-<!-- blueprint grid overlay (Laocoon merge) -->
-<div class="blueprint-grid" aria-hidden="true"><span></span><span></span><span></span></div>
 <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
 <div class="lightbox" id="demoLightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>

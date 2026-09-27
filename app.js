@@ -171,8 +171,11 @@
     });
   }
 
-  /* Dev font lab — hero type-combo switcher (Jon picks a winner, we lock it) */
+  /* Dev settings — gear menu (God UI style dropdown w/ submenus): slideshow modes + type combos */
   (function () {
+    var btn = document.getElementById('settingsBtn');
+    var root = document.getElementById('settingsMenu');
+    if (!btn || !root) return;
     var combos = [
       { id: 'prime', name: 'Prime Time', display: "'Oswald',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
@@ -180,10 +183,7 @@
       { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" },
       { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" }
     ];
-    var btn = document.getElementById('fontlabBtn');
-    var panel = document.getElementById('fontlabPanel');
-    var list = document.getElementById('fontlabList');
-    if (!btn || !panel || !list) return;
+    var activeCombo = 'montserrat';
     var fontsLoaded = false;
     function loadFonts() {
       if (fontsLoaded) return;
@@ -193,34 +193,127 @@
       l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap';
       document.head.appendChild(l);
     }
-    function apply(id) {
+    function applyCombo(id) {
       var c = null;
       combos.forEach(function (x) { if (x.id === id) c = x; });
-      c = c || combos[0];
+      c = c || combos[2];
+      activeCombo = c.id;
       document.documentElement.style.setProperty('--font-display', c.display);
       document.documentElement.style.setProperty('--font-body', c.body);
       try { localStorage.setItem('ptFontCombo3', c.id); } catch (e) {}
-      list.querySelectorAll('.fontlab-opt').forEach(function (b) {
-        b.classList.toggle('is-active', b.getAttribute('data-combo') === c.id);
-      });
+      refresh();
     }
-    combos.forEach(function (c) {
-      var b = document.createElement('button');
-      b.className = 'fontlab-opt';
-      b.setAttribute('data-combo', c.id);
-      b.innerHTML = '<span class="ag" style="font-family:' + c.display + '">Ag</span><span class="nm">' + c.name + '</span>';
-      b.addEventListener('click', function () { apply(c.id); });
-      list.appendChild(b);
+    try { var sv = localStorage.getItem('ptFontCombo3'); if (sv) activeCombo = sv; } catch (e) {}
+    function S() { return (window.PTSlideshow && window.PTSlideshow.get()) || { trans: 'fade', kb: true }; }
+    function setTrans(m) { if (window.PTSlideshow) window.PTSlideshow.setTrans(m); refresh(); }
+    function setKB(on) { if (window.PTSlideshow) window.PTSlideshow.setKB(on); refresh(); }
+    var IC = {
+      slides: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 9.5l4 2.5-4 2.5z" fill="currentColor" stroke="none"/></svg>',
+      type: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 18L10 6l5 12M6.8 14h6.4"/></svg>',
+      check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>',
+      chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>'
+    };
+    function typeSubmenu() {
+      var items = [{ type: 'label', label: 'Type combo' }];
+      combos.forEach(function (c) {
+        items.push({ label: c.name, checked: function () { return activeCombo === c.id; },
+          select: function () { loadFonts(); applyCombo(c.id); } });
+      });
+      items.push({ type: 'separator' });
+      items.push({ type: 'label', label: 'Locked: Montserrat' });
+      return items;
+    }
+    function menuModel() {
+      var st = S();
+      return [
+        { type: 'label', label: 'Preview settings' },
+        { label: 'Slideshow', icon: IC.slides, submenu: [
+          { type: 'label', label: 'Transition' },
+          { label: 'Fade', checked: function () { return st.trans === 'fade'; }, select: function () { setTrans('fade'); } },
+          { label: 'Slide', checked: function () { return st.trans === 'slide'; }, select: function () { setTrans('slide'); } },
+          { label: 'Dip to black', checked: function () { return st.trans === 'dip'; }, select: function () { setTrans('dip'); } },
+          { type: 'separator' },
+          { label: 'Ken Burns', toggle: true, on: function () { return st.kb; }, select: function () { setKB(!st.kb); } }
+        ] },
+        { label: 'Typography', icon: IC.type, submenu: typeSubmenu() }
+      ];
+    }
+    var openKey = null; // label of the row whose submenu is open
+    function el(tag, cls, html) {
+      var d = document.createElement(tag);
+      if (cls) d.className = cls;
+      if (html != null) d.innerHTML = html;
+      return d;
+    }
+    function buildPanel(items, isSub) {
+      var p = el('div', 'godmenu' + (isSub ? ' godmenu-sub opening' : ''));
+      p.setAttribute('role', 'menu');
+      items.forEach(function (it) {
+        if (it.type === 'label') { p.appendChild(el('div', 'godmenu-label', it.label)); return; }
+        if (it.type === 'separator') { p.appendChild(el('hr', 'godmenu-sep')); return; }
+        var b = el('button', 'godmenu-row');
+        b.setAttribute('role', 'menuitem');
+        b.innerHTML = '<span class="ric">' + (it.icon || '') + '</span><span class="rlab">' +
+          it.label + '</span>' +
+          (it.toggle ? '<span class="rswitch" aria-hidden="true"></span>'
+            : '<span class="rcheck" aria-hidden="true">' + IC.check + '</span>') +
+          (it.submenu ? '<span class="rchev" aria-hidden="true">' + IC.chev + '</span>' : '');
+        if (it.checked && it.checked()) b.classList.add('is-checked');
+        if (it.toggle && it.on && it.on()) b.classList.add('is-on');
+        b.setAttribute('aria-checked', it.toggle ? String(!!(it.on && it.on())) : String(!!(it.checked && it.checked())));
+        if (it.submenu) {
+          b.setAttribute('aria-haspopup', 'menu');
+          b.setAttribute('aria-expanded', openKey === it.label ? 'true' : 'false');
+          var open = function () { openKey = it.label; refresh(); };
+          var close = function () { if (openKey === it.label) { openKey = null; refresh(); } };
+          b.addEventListener('mouseenter', function () { if (window.matchMedia('(hover:hover)').matches) open(); });
+          b.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (openKey === it.label) close(); else open();
+          });
+          if (openKey === it.label) b.appendChild(buildPanel(it.submenu, true));
+        } else {
+          b.addEventListener('click', function (e) { e.stopPropagation(); it.select(); });
+          b.addEventListener('mouseenter', function () {
+            if (window.matchMedia('(hover:hover)').matches && openKey) { openKey = null; refresh(); }
+          });
+        }
+        p.appendChild(b);
+      });
+      return p;
+    }
+    function refresh() {
+      root.innerHTML = '';
+      var p = buildPanel(menuModel(), false);
+      while (p.firstChild) root.appendChild(p.firstChild);
+    }
+    function isOpen() { return !root.hasAttribute('hidden'); }
+    function open() {
+      refresh();
+      root.removeAttribute('hidden');
+      root.classList.remove('opening');
+      void root.offsetWidth;
+      root.classList.add('opening');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function close() {
+      root.setAttribute('hidden', '');
+      root.classList.remove('opening');
+      openKey = null;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (isOpen()) close(); else { loadFonts(); open(); }
     });
-    btn.addEventListener('click', function () {
-      loadFonts();
-      var open = panel.classList.toggle('open');
-      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.addEventListener('mousedown', function (e) {
+      if (isOpen() && !root.contains(e.target) && e.target !== btn && !btn.contains(e.target)) close();
     });
-    var saved = null;
-    try { saved = localStorage.getItem('ptFontCombo3'); } catch (e) {}
-    if (saved) { loadFonts(); }
-    apply(saved || 'montserrat');
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) { close(); btn.focus(); }
+    });
+    if (activeCombo !== 'montserrat') loadFonts();
+    applyCombo(activeCombo);
   })();
 
   /* Scroll-spy — highlight the nav link for the section in view */
@@ -433,7 +526,7 @@
     restartBar();
     play();
   }
-  /* Hero — 4-slide crossfade slider with arrows + 01/04 counter */
+  /* Hero — 4-slide slider (fade / slide / dip-to-black) with arrows + 01/04 counter */
   (function () {
     var hero = document.getElementById('heroSlider');
     if (!hero) return;
@@ -446,6 +539,12 @@
     var bar = document.getElementById('heroBar');
     if (!slides.length || slides.length !== copies.length) return;
     var DUR = 7000, i = 0, timer = null, held = false;
+    var trans = 'fade', kb = true, dipping = false;
+    try {
+      var sv = JSON.parse(localStorage.getItem('ptSlideSettings') || '{}');
+      if (sv.trans === 'fade' || sv.trans === 'slide' || sv.trans === 'dip') trans = sv.trans;
+      if (typeof sv.kb === 'boolean') kb = sv.kb;
+    } catch (e) {}
     function pad(n) { return (n < 10 ? '0' : '') + n; }
     var dots = [];
     if (dotsBox) {
@@ -459,35 +558,70 @@
       });
       dots[0].classList.add('is-on');
     }
+    function applyMode() {
+      if (trans === 'slide') hero.setAttribute('data-trans', 'slide');
+      else hero.removeAttribute('data-trans');
+      hero.setAttribute('data-kb', kb ? 'on' : 'off');
+      slides.forEach(function (s) { s.classList.remove('was-active'); });
+      try { localStorage.setItem('ptSlideSettings', JSON.stringify({ trans: trans, kb: kb })); } catch (e) {}
+    }
     function restartBar() {
       if (!bar) return;
       bar.classList.remove('run', 'hold');
       void bar.offsetWidth;
       if (!reduceMotion && !held) bar.classList.add('run');
     }
-    function show(n) {
-      i = (n + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
-      copies.forEach(function (c, k) { c.classList.toggle('is-active', k === i); });
+    function setActiveVisual(next, dir) {
+      if (trans === 'slide') {
+        hero.setAttribute('data-dir', dir || 'fwd');
+        var old = slides[i];
+        old.classList.remove('is-active');
+        old.classList.add('was-active');
+        void hero.offsetWidth;
+        slides[next].classList.add('is-active');
+        setTimeout(function () { old.classList.remove('was-active'); }, 1300);
+      } else {
+        slides.forEach(function (s, k) { s.classList.toggle('is-active', k === next); });
+      }
+      copies.forEach(function (c, k) { c.classList.toggle('is-active', k === next); });
       dots.forEach(function (d, k) {
-        d.classList.toggle('is-on', k === i);
-        d.setAttribute('aria-selected', k === i ? 'true' : 'false');
+        d.classList.toggle('is-on', k === next);
+        d.setAttribute('aria-selected', k === next ? 'true' : 'false');
       });
-      if (indexEl) indexEl.textContent = pad(i + 1);
+      if (indexEl) indexEl.textContent = pad(next + 1);
+      i = next;
       restartBar();
+    }
+    function show(n, dir) {
+      var next = (n + slides.length) % slides.length;
+      if (dipping || next === i) return;
+      if (trans === 'dip') {
+        dipping = true;
+        hero.classList.add('dipping');
+        setTimeout(function () { setActiveVisual(next, dir); }, 480);
+        setTimeout(function () { hero.classList.remove('dipping'); dipping = false; }, 980);
+        return;
+      }
+      setActiveVisual(next, dir);
+    }
+    function pickDir(from, to) {
+      var len = slides.length;
+      if (to === (from + 1) % len) return 'fwd';
+      if (from === (to + 1) % len) return 'back';
+      return to > from ? 'fwd' : 'back';
     }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
     function play() {
       stop();
       if (reduceMotion || held || document.hidden) return;
-      timer = setInterval(function () { show(i + 1); }, DUR);
+      timer = setInterval(function () { show(i + 1, 'fwd'); }, DUR);
     }
     function hold(v) {
       held = v;
       if (bar) bar.classList.toggle('hold', v);
       if (v) { stop(); } else { play(); restartBar(); }
     }
-    function manual(n) { show(n); stop(); play(); }
+    function manual(n) { show(n, pickDir(i, n)); stop(); play(); }
     if (prevBtn) prevBtn.addEventListener('click', function () { manual(i - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { manual(i + 1); });
     hero.addEventListener('mouseenter', function () { hold(true); });
@@ -502,8 +636,8 @@
     hero.addEventListener('touchend', function (e) {
       if (tx !== null) {
         var dx = e.changedTouches[0].clientX - tx;
-        if (dx < -40) show(i + 1);
-        else if (dx > 40) show(i - 1);
+        if (dx < -40) show(i + 1, 'fwd');
+        else if (dx > 40) show(i - 1, 'back');
       }
       tx = null;
       hold(false);
@@ -511,7 +645,12 @@
     document.addEventListener('visibilitychange', function () {
       if (document.hidden) { stop(); } else { play(); restartBar(); }
     });
-    show(0);
+    window.PTSlideshow = {
+      setTrans: function (m) { if (m === 'fade' || m === 'slide' || m === 'dip') { trans = m; applyMode(); } },
+      setKB: function (on) { kb = !!on; applyMode(); },
+      get: function () { return { trans: trans, kb: kb }; }
+    };
+    applyMode();
     play();
   })();
 
