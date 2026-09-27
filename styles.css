@@ -318,8 +318,8 @@ body.loaded .hero-controls{opacity:1;transform:none}
 .cta-lines{margin:2rem 0;display:grid;gap:.7rem}
 .cta-lines a{color:var(--bone);font-size:1.25rem;text-decoration:none;font-weight:500}
 .cta-lines a:hover{color:var(--gold)}
-/* gold contact section (old-build steal) — spotlight: dark edges melt into gold center */
-.cta-gold{background:linear-gradient(90deg,var(--ink) 0%,var(--gold) 26%,var(--gold) 74%,var(--ink) 100%)}
+/* gold contact section (old-build steal) — radial vignette: gold pool fades to dark all around */
+.cta-gold{background:radial-gradient(ellipse 85% 75% at 50% 42%,var(--gold) 0%,var(--gold) 42%,#8a6504 68%,var(--ink) 100%)}
 .cta-gold .eyebrow{color:var(--ink)}
 .cta-gold .eyebrow.dash::before{background:var(--ink)}
 .cta-gold .h2{color:var(--ink)}
