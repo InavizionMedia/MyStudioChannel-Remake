@@ -518,8 +518,8 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 /* ---------- section divider : code-comment tag (// PACKAGES) ---------- */
 .section-divider{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:1.7rem 1.25rem}
 .section-divider .sd-rule{height:1px;flex:1;max-width:220px;
-  background:linear-gradient(90deg,transparent,rgba(245,179,1,.45))}
-.section-divider .sd-rule:last-child{background:linear-gradient(90deg,rgba(245,179,1,.45),transparent)}
+  background:linear-gradient(90deg,transparent,rgba(245,179,1,.28))}
+.section-divider .sd-rule:last-child{background:linear-gradient(90deg,rgba(245,179,1,.28),transparent)}
 .section-divider .sd-tag{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;
   letter-spacing:.3em;color:rgba(246,242,233,.72);white-space:nowrap}
 .section-divider .sd-tag b{color:var(--gold);font-weight:600}
