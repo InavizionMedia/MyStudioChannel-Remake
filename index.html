@@ -256,23 +256,33 @@
       <p class="eyebrow">Voices</p>
       <h2 class="h2" data-words>Built with care. Remembered.</h2>
       <p class="sub">Real words from founders and creative professionals who trusted the team with their online presence.</p>
-      <div class="quotes">
-        <blockquote class="quote">
-          <p>“I am thrilled to share my experience working with Yolando Brown. Her passion for her work shines through in everything she does…”</p>
-          <div class="who"><strong>Tige</strong><span>Non-Profit Founder</span></div>
-        </blockquote>
-        <blockquote class="quote">
-          <p>“I am incredibly grateful for the invaluable assistance in creating and developing my website… instrumental in launching my beauty business successfully.”</p>
-          <div class="who"><strong>Melanie</strong><span>Makeup Artist / Stylist</span></div>
-        </blockquote>
-        <blockquote class="quote">
-          <p>“My experience has been nothing but extraordinary… She made my website and logo exactly how I imagined them. 5 stars isn't enough.”</p>
-          <div class="who"><strong>Mrs. Hart</strong><span>Laundry Services Founder</span></div>
-        </blockquote>
-        <blockquote class="quote">
-          <p>“The team was very professional and personable… I will continue to use her services for many years to come…”</p>
-          <div class="who"><strong>Kristina</strong><span>Client</span></div>
-        </blockquote>
+      <div class="voice-stage" id="voiceStage" tabindex="0" aria-roledescription="carousel" aria-label="Client testimonials">
+        <div class="voice-mark" aria-hidden="true">&ldquo;</div>
+        <div class="voice-viewport">
+          <blockquote class="voice-slide is-active">
+            <p>&ldquo;I am thrilled to share my experience working with Yolando Brown. Her passion for her work shines through in everything she does&hellip;&rdquo;</p>
+            <footer><strong>Tige</strong><span>Non-Profit Founder</span></footer>
+          </blockquote>
+          <blockquote class="voice-slide" aria-hidden="true">
+            <p>&ldquo;I am incredibly grateful for the invaluable assistance in creating and developing my website&hellip; instrumental in launching my beauty business successfully.&rdquo;</p>
+            <footer><strong>Melanie</strong><span>Makeup Artist / Stylist</span></footer>
+          </blockquote>
+          <blockquote class="voice-slide" aria-hidden="true">
+            <p>&ldquo;My experience has been nothing but extraordinary&hellip; She made my website and logo exactly how I imagined them. 5 stars isn't enough.&rdquo;</p>
+            <footer><strong>Mrs. Hart</strong><span>Laundry Services Founder</span></footer>
+          </blockquote>
+          <blockquote class="voice-slide" aria-hidden="true">
+            <p>&ldquo;The team was very professional and personable&hellip; I will continue to use her services for many years to come&hellip;&rdquo;</p>
+            <footer><strong>Kristina</strong><span>Client</span></footer>
+          </blockquote>
+        </div>
+        <div class="voice-progress" aria-hidden="true"><span id="voiceBar"></span></div>
+        <div class="voice-controls">
+          <button class="voice-arrow" id="voicePrev" aria-label="Previous testimonial">&larr;</button>
+          <div class="voice-dots" id="voiceDots" role="tablist" aria-label="Choose testimonial"></div>
+          <button class="voice-arrow" id="voiceNext" aria-label="Next testimonial">&rarr;</button>
+        </div>
+        <p class="voice-count" aria-hidden="true"><span id="voiceIndex">01</span> / <span id="voiceTotal">04</span></p>
       </div>
     </div>
   </section>
