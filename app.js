@@ -182,4 +182,57 @@
     restartBar();
     play();
   }
+  /* Hero — 4-slide crossfade slider with arrows + 01/04 counter */
+  (function () {
+    var hero = document.getElementById('heroSlider');
+    if (!hero) return;
+    var slides = Array.prototype.slice.call(hero.querySelectorAll('.hero-slide'));
+    var copies = Array.prototype.slice.call(hero.querySelectorAll('.hero-copy'));
+    var indexEl = document.getElementById('heroIndex');
+    var prevBtn = document.getElementById('heroPrev');
+    var nextBtn = document.getElementById('heroNext');
+    if (!slides.length || slides.length !== copies.length) return;
+    var DUR = 7000, i = 0, timer = null, held = false;
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
+      copies.forEach(function (c, k) { c.classList.toggle('is-active', k === i); });
+      if (indexEl) indexEl.textContent = pad(i + 1);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function play() {
+      stop();
+      if (reduceMotion || held || document.hidden) return;
+      timer = setInterval(function () { show(i + 1); }, DUR);
+    }
+    function hold(v) { held = v; if (v) stop(); else play(); }
+    function manual(n) { show(n); stop(); play(); }
+    if (prevBtn) prevBtn.addEventListener('click', function () { manual(i - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { manual(i + 1); });
+    hero.addEventListener('mouseenter', function () { hold(true); });
+    hero.addEventListener('mouseleave', function () { hold(false); });
+    hero.addEventListener('focusin', function () { hold(true); });
+    hero.addEventListener('focusout', function () { hold(false); });
+    var tx = null;
+    hero.addEventListener('touchstart', function (e) {
+      tx = e.touches[0].clientX;
+      hold(true);
+    }, { passive: true });
+    hero.addEventListener('touchend', function (e) {
+      if (tx !== null) {
+        var dx = e.changedTouches[0].clientX - tx;
+        if (dx < -40) show(i + 1);
+        else if (dx > 40) show(i - 1);
+      }
+      tx = null;
+      hold(false);
+    }, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop(); else play();
+    });
+    show(0);
+    play();
+  })();
+
 })();
