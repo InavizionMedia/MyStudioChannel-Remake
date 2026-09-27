@@ -157,7 +157,8 @@
       { id: 'marquee', name: 'Marquee', display: "'Anton',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'block', name: 'Block', display: "'Archivo Black',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
-      { id: 'spartan', name: 'Spartan', display: "'League Spartan',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" }
+      { id: 'spartan', name: 'Spartan', display: "'League Spartan',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
+      { id: 'current', name: 'Current Site', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" }
     ];
     var btn = document.getElementById('fontlabBtn');
     var panel = document.getElementById('fontlabPanel');
@@ -169,7 +170,7 @@
       fontsLoaded = true;
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Archivo+Black&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=League+Spartan:wght@700;800&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Archivo+Black&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=League+Spartan:wght@700;800&family=Montserrat:wght@400;500;700;800&display=swap';
       document.head.appendChild(l);
     }
     function apply(id) {
