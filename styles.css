@@ -73,6 +73,7 @@ section{position:relative}
 .menu-overlay.open a:nth-child(4){transition-delay:220ms}
 .menu-overlay.open a:nth-child(5){transition-delay:290ms}
 .menu-overlay.open a:nth-child(6){transition-delay:360ms}
+.menu-overlay.open a:nth-child(7){transition-delay:430ms}
 .menu-overlay a:hover{color:var(--gold)}
 .menu-close{position:absolute;top:1.4rem;right:1.6rem;background:none;border:0;color:var(--bone);font-size:2.2rem;cursor:pointer;line-height:1}
 .menu-overlay .onair{align-self:center;margin-top:1.5rem}
@@ -163,7 +164,7 @@ body.loaded .hero .cta-row{opacity:1;transform:none}
 .quote{background:var(--coal);border:1px solid var(--line);border-radius:2px;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1.2rem}
 .quote p{font-size:1.02rem;color:var(--bone)}
 .quote .who{margin-top:auto}
-.quote .who strong{display:block;color:var(--gold);font-weight:600;font-size:.95rem}
+.quote .who strong{display:block;color:var(--gold);font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.95rem}
 .quote .who span{font-size:.85rem;color:var(--smoke)}
 
 /* ---------- faq ---------- */
