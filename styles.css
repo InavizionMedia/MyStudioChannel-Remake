@@ -516,7 +516,7 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 }
 
 /* ---------- section divider : code-comment tag (// PACKAGES) ---------- */
-.section-divider{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:1rem 1.25rem}
+.section-divider{display:flex;align-items:center;justify-content:center;gap:.9rem;padding:1.7rem 1.25rem}
 .section-divider .sd-rule{height:1px;flex:1;max-width:220px;
   background:linear-gradient(90deg,transparent,rgba(245,179,1,.45))}
 .section-divider .sd-rule:last-child{background:linear-gradient(90deg,rgba(245,179,1,.45),transparent)}
