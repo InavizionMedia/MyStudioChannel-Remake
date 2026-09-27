@@ -484,6 +484,25 @@
 
 <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
+<div class="lightbox" id="demoLightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
+  <div class="lightbox-scrim" data-lb-close></div>
+  <div class="lightbox-panel">
+    <button class="lightbox-close" data-lb-close aria-label="Close demo details">×</button>
+    <div class="lightbox-media"><img id="lbImg" src="" alt=""></div>
+    <div class="lightbox-body">
+      <p class="cat" id="lbCat"></p>
+      <h3 id="lbTitle"></h3>
+      <p class="lb-desc" id="lbDesc"></p>
+      <div class="lightbox-actions">
+        <a class="btn" id="lbVisit" href="#" target="_blank" rel="noopener" hidden>View Live Demo <span aria-hidden="true">↗</span></a>
+        <a class="btn" id="lbBuild" href="#contact">Build One Like This <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <button class="lightbox-arrow lb-prev" id="lbPrev" aria-label="Previous demo">←</button>
+    <button class="lightbox-arrow lb-next" id="lbNext" aria-label="Next demo">→</button>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>

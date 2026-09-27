@@ -56,6 +56,84 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* Demo lightbox — click a card for the full story */
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.demo-card'));
+    var lb = document.getElementById('demoLightbox');
+    if (!cards.length || !lb) return;
+    /* Fuller descriptions per demo; url: set a live URL when one exists and the
+       "View Live Demo" button appears. null keeps it hidden. */
+    var details = [
+      { url: null, desc: 'A broadcast-grade home for hosts and their shows — episode guides, guest segments, and highlight reels, wrapped in a set design that puts the conversation front and center.' },
+      { url: null, desc: 'A content platform with commerce baked in — product storytelling, step-by-step guides, and custom shop planning that turns viewers into buyers without ever leaving the channel.' },
+      { url: null, desc: 'A network-style hub for a culture brand — guest management, episode scheduling, and live audience interaction, all under one roof and unmistakably on brand.' },
+      { url: null, desc: 'An audio-first streaming experience — playlists, episode transcriptions, and subscriber management for shows that live in the listener\u2019s ears.' },
+      { url: null, desc: 'A cinematic home for long-form storytelling — chapter navigation, behind-the-scenes features, and filmmaker profiles that give every film its own premiere.' }
+    ];
+    var lbImg = document.getElementById('lbImg');
+    var lbCat = document.getElementById('lbCat');
+    var lbTitle = document.getElementById('lbTitle');
+    var lbDesc = document.getElementById('lbDesc');
+    var lbVisit = document.getElementById('lbVisit');
+    var lbBuild = document.getElementById('lbBuild');
+    var current = 0, lastFocus = null;
+    function show(i) {
+      current = (i + cards.length) % cards.length;
+      var card = cards[current];
+      var img = card.querySelector('img');
+      var title = card.querySelector('h3').textContent.trim();
+      var d = details[current] || { url: null, desc: '' };
+      lbImg.src = img.getAttribute('src');
+      lbImg.alt = img.getAttribute('alt') || title;
+      lbCat.textContent = card.querySelector('.cat').textContent.trim();
+      lbTitle.textContent = title;
+      lbDesc.textContent = d.desc || card.querySelector('.demo-body p').textContent.trim();
+      if (d.url) { lbVisit.href = d.url; lbVisit.hidden = false; }
+      else { lbVisit.hidden = true; }
+      lbBuild.dataset.demo = title;
+      lb.querySelector('.lightbox-panel').scrollTop = 0;
+    }
+    function open(i) {
+      lastFocus = document.activeElement;
+      show(i);
+      lb.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lb.querySelector('.lightbox-close').focus();
+    }
+    function close() {
+      lb.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    cards.forEach(function (card, i) {
+      var title = card.querySelector('h3').textContent.trim();
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', 'Open details for ' + title);
+      card.addEventListener('click', function () { open(i); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+      });
+    });
+    document.getElementById('lbPrev').addEventListener('click', function () { show(current - 1); });
+    document.getElementById('lbNext').addEventListener('click', function () { show(current + 1); });
+    lb.querySelectorAll('[data-lb-close]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(current - 1);
+      else if (e.key === 'ArrowRight') show(current + 1);
+    });
+    /* "Build One Like This" — close, then jump to contact with the demo named */
+    lbBuild.addEventListener('click', function () {
+      var demo = lbBuild.dataset.demo || 'this demo';
+      close();
+      var project = document.querySelector('#contactForm textarea[name="project"]');
+      if (project && !project.value) project.value = 'I\u2019m interested in a site like \u201C' + demo + '.\u201D ';
+    });
+  })();
   /* Back-to-top button — fades in once the reader is down the page */
   var toTop = document.getElementById('toTop');
   if (toTop) {
