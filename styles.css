@@ -182,10 +182,12 @@ body.loaded .hero-controls{opacity:1;transform:none}
 .plate-frame::before{content:"";position:absolute;inset:0;border:8px solid var(--gold);transform:translate(16px,16px);z-index:0}
 .plate-view{position:relative;z-index:1;overflow:hidden;border-radius:2px}
 .plate-view img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;transform:scale(1.14);transition:transform 2s var(--ease)}
-.lock.locked .plate-view img{transform:scale(1)}
+.lock.locked .plate-view img{transform:scale(1);animation:plate-drift 12s ease-in-out 2.2s infinite alternate}
+@keyframes plate-drift{from{transform:scale(1)}to{transform:scale(1.06)}}
 .plate-view::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(245,179,1,.22) 50%,transparent 58%);transform:translateX(-130%);pointer-events:none}
-.lock.locked .plate-view::after{animation:plate-sheen 1.6s var(--ease) .55s 1 forwards}
+.lock.locked .plate-view::after{animation:plate-sheen 1.6s var(--ease) .55s 1 forwards,plate-sheen-loop 9s linear 2.2s infinite}
 @keyframes plate-sheen{to{transform:translateX(130%)}}
+@keyframes plate-sheen-loop{0%{transform:translateX(-130%)}18%{transform:translateX(130%)}100%{transform:translateX(130%)}}
 .pillars{display:grid;gap:1.5rem;margin-top:3.5rem}
 .pillar{border-top:1px solid var(--line);padding-top:1.25rem}
 .pillar .num{font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:1rem;letter-spacing:.06em}
@@ -463,5 +465,5 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 @media (prefers-reduced-motion:reduce){
   .goldline.aurora{animation:none}
   .lock.locked .plate-view::after{animation:none}
-  .lock.locked .plate-view img{transform:none;transition:none}
+  .lock.locked .plate-view img{transform:none;transition:none;animation:none}
 }
