@@ -5,17 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Studio Channel — Your Channel. On Air.</title>
 <meta name="description" content="We build studio-style websites that give creators the look and structure of a major network — powered by a custom plugin, built once and owned by you.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="My Studio Channel — Your Channel. On Air.">
+<meta property="og:description" content="Studio-style websites for creators. Look like a real network — built once, owned forever.">
+<meta property="og:image" content="assets/hero-studio-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/jpeg" href="assets/logo-bolt.jpg">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="topbar" id="topbar">
   <div class="wrap topbar-inner">
-    <a class="wordmark" href="#top">My Studio Channel</a>
+    <a class="wordmark" href="#top"><img class="wordmark-mark" src="assets/logo-bolt.jpg" alt="">My <span class="gold-w">Studio</span> Channel</a>
     <nav class="nav-desktop" aria-label="Primary">
       <a href="#own" data-nav>Own</a>
       <div class="nav-drop">
@@ -209,6 +215,7 @@
             <li>Tutorial walkthrough after launch</li>
           </ul>
           <p class="bestfor"><strong>Best for</strong>Creators who already host videos on YouTube and want a premium presentation layer.</p>
+          <a class="btn pkg-cta" href="#contact">Get Started <span aria-hidden="true">→</span></a>
         </article>
         <article class="pkg popular">
           <span class="tag">MOST POPULAR</span>
@@ -225,6 +232,7 @@
             <li>Advanced video playback controls</li>
           </ul>
           <p class="bestfor"><strong>Best for</strong>Creators who want their own professional streaming environment without relying on YouTube.</p>
+          <a class="btn pkg-cta" href="#contact">Get Started <span aria-hidden="true">→</span></a>
         </article>
         <article class="pkg">
           <h3>Network Platform</h3>
@@ -241,6 +249,7 @@
             <li>Scalable platform structure</li>
           </ul>
           <p class="bestfor"><strong>Best for</strong>Creators launching their own streaming platform, academy, or subscription content network.</p>
+          <a class="btn pkg-cta" href="#contact">Get Started <span aria-hidden="true">→</span></a>
         </article>
       </div>
       <p class="pkg-note">Payment schedule: 50% deposit / 25% midway / 25% final via PayPal.</p>
@@ -308,6 +317,7 @@
   <!-- ⑥ PROCESS -->
   <section id="process" class="pad lock watermark" data-watermark="PROCESS">
     <div class="wrap">
+      <img class="dial-emblem" src="assets/logo-dial.jpg" alt="Studio signal dial emblem">
       <p class="eyebrow dash">How It Works</p>
       <h2 class="h2" data-words>Four steps to <span class="goldline">going live.</span></h2>
       <p class="sub">A collaborative build process with clear checkpoints — from the first conversation through delivery.</p>
@@ -421,7 +431,29 @@
         <a href="tel:+13363031658">(336) 303-1658</a>
         <a href="mailto:Admin@MyStudioChannel.com">Admin@MyStudioChannel.com</a>
       </div>
-      <a class="btn btn-ink" href="mailto:Admin@MyStudioChannel.com">Start With A Consultation ↗</a>
+      <form class="cta-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <label>Your name
+            <input type="text" name="name" required placeholder="Jane Creator" autocomplete="name">
+          </label>
+          <label>Email
+            <input type="email" name="email" required placeholder="you@email.com" autocomplete="email">
+          </label>
+        </div>
+        <label>Which package
+          <select name="package" id="packageSelect">
+            <option>Not sure yet</option>
+            <option>Creator Launch</option>
+            <option>Studio Pro</option>
+            <option>Network Platform</option>
+          </select>
+        </label>
+        <label>What are you launching?
+          <textarea name="project" rows="4" placeholder="Your channel, your content, your goals…"></textarea>
+        </label>
+        <button class="btn btn-ink" type="submit">Send Inquiry <span aria-hidden="true">→</span></button>
+        <p class="form-note">Submitting opens your email app with everything filled in — addressed straight to us.</p>
+      </form>
     </div>
   </section>
 
@@ -444,11 +476,32 @@
       </nav>
     </div>
     <div class="foot-top">
-      <a class="wordmark" href="#top">My Studio Channel</a>
+      <a class="wordmark" href="#top"><img class="wordmark-mark" src="assets/logo-bolt.jpg" alt="">My <span class="gold-w">Studio</span> Channel</a>
     </div>
     <p class="foot-bottom">© 2026 My Studio Channel — Built once. Owned forever.</p>
   </div>
 </footer>
+
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<div class="lightbox" id="demoLightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
+  <div class="lightbox-scrim" data-lb-close></div>
+  <div class="lightbox-panel">
+    <button class="lightbox-close" data-lb-close aria-label="Close demo details">×</button>
+    <div class="lightbox-media"><img id="lbImg" src="" alt=""></div>
+    <div class="lightbox-body">
+      <p class="cat" id="lbCat"></p>
+      <h3 id="lbTitle"></h3>
+      <p class="lb-desc" id="lbDesc"></p>
+      <div class="lightbox-actions">
+        <a class="btn" id="lbVisit" href="#" target="_blank" rel="noopener" hidden>View Live Demo <span aria-hidden="true">↗</span></a>
+        <a class="btn" id="lbBuild" href="#contact">Build One Like This <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <button class="lightbox-arrow lb-prev" id="lbPrev" aria-label="Previous demo">←</button>
+    <button class="lightbox-arrow lb-next" id="lbNext" aria-label="Next demo">→</button>
+  </div>
+</div>
 
 <script src="app.js"></script>
 </body>
