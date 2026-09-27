@@ -290,7 +290,7 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
 @media (max-width:420px){
   .wordmark{font-size:.85rem}
   .hero-content{padding-top:5.5rem;padding-bottom:3rem}
-  .hero h1{font-size:clamp(2.2rem,11vw,3.2rem)}
+  .hero h1{font-size:clamp(2rem,9.5vw,2.8rem)}
   .hero .sub{margin-top:1.2rem}
   .hero .cta-row{margin-top:1.8rem}
   .hero-controls{margin-top:1.8rem}
