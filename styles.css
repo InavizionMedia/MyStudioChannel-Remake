@@ -267,6 +267,8 @@ body.loaded .hero-controls{opacity:1;transform:none}
 .step.is-on .tl-node{border-color:var(--gold);background:var(--gold);box-shadow:0 0 20px rgba(242,183,5,.55)}
 .step .num{font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:1.7rem;letter-spacing:.04em}
 .step h3{font-size:1.4rem;margin:.6rem 0 .5rem}
+.step h3 .consult-link{color:inherit;text-decoration:none}
+.step h3 .consult-link:hover{color:var(--gold)}
 .step p{font-size:1rem}
 
 /* ---------- voices : single quote stage ---------- */
