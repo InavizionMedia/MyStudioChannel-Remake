@@ -8,8 +8,8 @@
   --smoke:#A8A29A;
   --line:rgba(246,242,233,0.14);
   --ease:cubic-bezier(0.16,1,0.3,1);
-  --font-display:'Poppins',system-ui,sans-serif;
-  --font-body:'Poppins',system-ui,sans-serif;
+  --font-display:'Montserrat',system-ui,sans-serif;
+  --font-body:'Montserrat',system-ui,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
