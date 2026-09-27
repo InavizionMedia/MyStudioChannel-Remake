@@ -143,7 +143,7 @@ body.loaded .hero-scrim{opacity:1}
 .hero-copy{grid-area:1/1;opacity:0;transform:translateY(26px);transition:opacity 900ms var(--ease),transform 900ms var(--ease);pointer-events:none}
 .hero-copy.is-active{opacity:1;transform:none;pointer-events:auto;transition-delay:280ms}
 .hero .eyebrow{opacity:0;transform:translateY(28px);transition:opacity 950ms var(--ease),transform 950ms var(--ease);text-shadow:0 1px 10px rgba(0,0,0,.65)}
-.hero h1{font-size:clamp(3rem,7.2vw,6.5rem);letter-spacing:-.02em;text-shadow:0 2px 22px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.6)}
+.hero h1{font-size:clamp(2.5rem,4.5vw,4rem);letter-spacing:-.02em;text-shadow:0 2px 22px rgba(0,0,0,.5),0 1px 3px rgba(0,0,0,.6)}
 .hero h1 .hline{display:block;white-space:nowrap}
 .hero h1 .goldline{color:var(--gold)}
 .hero h1 .wd{opacity:0;transform:translateY(28px);transition:opacity 950ms var(--ease),transform 950ms var(--ease);transition-delay:calc(120ms + var(--i,0)*70ms)}
