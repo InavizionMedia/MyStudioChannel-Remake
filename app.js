@@ -44,31 +44,9 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px 100px 0px' });
+    }, { threshold: 0.18 });
     locks.forEach(function (s) { io.observe(s); });
   }
-
-  /* FAQ gold-wash parallax — the glow drifts slower than the scroll */
-  (function () {
-    var faq = document.getElementById('faq');
-    if (!faq || reduceMotion) return;
-    var ticking = false;
-    function paint() {
-      ticking = false;
-      var r = faq.getBoundingClientRect();
-      var vh = window.innerHeight;
-      if (r.bottom > -200 && r.top < vh + 200) {
-        var p = (r.top + r.height / 2 - vh / 2) / vh;
-        faq.style.setProperty('--faqGlow', (p * 60).toFixed(1) + 'px');
-      }
-    }
-    function onScroll() {
-      if (!ticking) { ticking = true; requestAnimationFrame(paint); }
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    paint();
-  })();
 
   /* Top bar state */
   var topbar = document.getElementById('topbar');
@@ -78,202 +56,16 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* Demo lightbox — click a card for the full story */
-  (function () {
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.demo-card'));
-    var lb = document.getElementById('demoLightbox');
-    if (!cards.length || !lb) return;
-    /* Fuller descriptions per demo; url: set a live URL when one exists and the
-       "View Live Demo" button appears. null keeps it hidden. */
-    var details = [
-      { url: null, desc: 'A broadcast-grade home for hosts and their shows — episode guides, guest segments, and highlight reels, wrapped in a set design that puts the conversation front and center.' },
-      { url: null, desc: 'A content platform with commerce baked in — product storytelling, step-by-step guides, and custom shop planning that turns viewers into buyers without ever leaving the channel.' },
-      { url: null, desc: 'A network-style hub for a culture brand — guest management, episode scheduling, and live audience interaction, all under one roof and unmistakably on brand.' },
-      { url: null, desc: 'An audio-first streaming experience — playlists, episode transcriptions, and subscriber management for shows that live in the listener\u2019s ears.' },
-      { url: null, desc: 'A cinematic home for long-form storytelling — chapter navigation, behind-the-scenes features, and filmmaker profiles that give every film its own premiere.' }
-    ];
-    var lbImg = document.getElementById('lbImg');
-    var lbCat = document.getElementById('lbCat');
-    var lbTitle = document.getElementById('lbTitle');
-    var lbDesc = document.getElementById('lbDesc');
-    var lbVisit = document.getElementById('lbVisit');
-    var lbBuild = document.getElementById('lbBuild');
-    var current = 0, lastFocus = null;
-    function show(i) {
-      current = (i + cards.length) % cards.length;
-      var card = cards[current];
-      var img = card.querySelector('img');
-      var title = card.querySelector('h3').textContent.trim();
-      var d = details[current] || { url: null, desc: '' };
-      lbImg.src = img.getAttribute('src');
-      lbImg.alt = img.getAttribute('alt') || title;
-      lbCat.textContent = card.querySelector('.cat').textContent.trim();
-      lbTitle.textContent = title;
-      lbDesc.textContent = d.desc || card.querySelector('.demo-body p').textContent.trim();
-      if (d.url) { lbVisit.href = d.url; lbVisit.hidden = false; }
-      else { lbVisit.hidden = true; }
-      lbBuild.dataset.demo = title;
-      lb.querySelector('.lightbox-panel').scrollTop = 0;
-    }
-    function open(i) {
-      lastFocus = document.activeElement;
-      show(i);
-      lb.hidden = false;
-      document.body.style.overflow = 'hidden';
-      lb.querySelector('.lightbox-close').focus();
-    }
-    function close() {
-      lb.hidden = true;
-      document.body.style.overflow = '';
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-    cards.forEach(function (card, i) {
-      var title = card.querySelector('h3').textContent.trim();
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('role', 'button');
-      card.setAttribute('aria-label', 'Open details for ' + title);
-      card.addEventListener('click', function () { open(i); });
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
-      });
-    });
-    document.getElementById('lbPrev').addEventListener('click', function () { show(current - 1); });
-    document.getElementById('lbNext').addEventListener('click', function () { show(current + 1); });
-    lb.querySelectorAll('[data-lb-close]').forEach(function (el) {
-      el.addEventListener('click', close);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (lb.hidden) return;
-      if (e.key === 'Escape') close();
-      else if (e.key === 'ArrowLeft') show(current - 1);
-      else if (e.key === 'ArrowRight') show(current + 1);
-    });
-    /* "Build One Like This" — close, then jump to contact with the demo named */
-    lbBuild.addEventListener('click', function () {
-      var demo = lbBuild.dataset.demo || 'this demo';
-      close();
-      var project = document.querySelector('#contactForm textarea[name="project"]');
-      if (project && !project.value) project.value = 'I\u2019m interested in a site like \u201C' + demo + '.\u201D ';
-    });
-  })();
   /* Back-to-top button — fades in once the reader is down the page */
   var toTop = document.getElementById('toTop');
   if (toTop) {
-    var showTop = function () {
-      var y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      toTop.classList.toggle('show', y > 500);
-    };
-    window.addEventListener('scroll', showTop, { passive: true });
-    document.addEventListener('scroll', showTop, { passive: true });
-    showTop();
+    window.addEventListener('scroll', function () {
+      toTop.classList.toggle('show', window.scrollY > 600);
+    }, { passive: true });
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   }
-
-  /* Dev font lab — hero type-combo switcher (Jon picks a winner, we lock it) */
-  (function () {
-    var combos = [
-      { id: 'prime', name: 'Prime Time', display: "'Oswald',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
-      { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
-      { id: 'montserrat', name: 'Montserrat', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
-      { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" },
-      { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" }
-    ];
-    var btn = document.getElementById('fontlabBtn');
-    var panel = document.getElementById('fontlabPanel');
-    var list = document.getElementById('fontlabList');
-    if (!btn || !panel || !list) return;
-    var fontsLoaded = false;
-    function loadFonts() {
-      if (fontsLoaded) return;
-      fontsLoaded = true;
-      var l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Poppins:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap';
-      document.head.appendChild(l);
-    }
-    function apply(id) {
-      var c = null;
-      combos.forEach(function (x) { if (x.id === id) c = x; });
-      c = c || combos[0];
-      document.documentElement.style.setProperty('--font-display', c.display);
-      document.documentElement.style.setProperty('--font-body', c.body);
-      try { localStorage.setItem('ptFontCombo3', c.id); } catch (e) {}
-      list.querySelectorAll('.fontlab-opt').forEach(function (b) {
-        b.classList.toggle('is-active', b.getAttribute('data-combo') === c.id);
-      });
-    }
-    combos.forEach(function (c) {
-      var b = document.createElement('button');
-      b.className = 'fontlab-opt';
-      b.setAttribute('data-combo', c.id);
-      b.innerHTML = '<span class="ag" style="font-family:' + c.display + '">Ag</span><span class="nm">' + c.name + '</span>';
-      b.addEventListener('click', function () { apply(c.id); });
-      list.appendChild(b);
-    });
-    btn.addEventListener('click', function () {
-      loadFonts();
-      var open = panel.classList.toggle('open');
-      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
-    });
-    var saved = null;
-    try { saved = localStorage.getItem('ptFontCombo3'); } catch (e) {}
-    if (saved) { loadFonts(); }
-    apply(saved || 'montserrat');
-  })();
-
-  /* Scroll-spy — highlight the nav link for the section in view */
-  (function () {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-desktop a[data-nav]'));
-    if (!links.length || !('IntersectionObserver' in window)) return;
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) {
-          links.forEach(function (a) { a.classList.remove('is-active'); });
-          var a = map[en.target.id];
-          if (a) a.classList.add('is-active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    Object.keys(map).forEach(function (id) {
-      var s = document.getElementById(id);
-      if (s) obs.observe(s);
-    });
-  })();
-
-  /* Contact form — no backend on a static page, so compose a mailto */
-  (function () {
-    var form = document.getElementById('contactForm');
-    if (!form) return;
-    var pkg = document.getElementById('packageSelect');
-    var nameInput = form.querySelector('input[name="name"]');
-    var emailInput = form.querySelector('input[name="email"]');
-    var projectInput = form.querySelector('textarea[name="project"]');
-    document.querySelectorAll('.pkg-cta').forEach(function (a) {
-      a.addEventListener('click', function () {
-        var card = a.closest('.pkg');
-        var h3 = card && card.querySelector('h3');
-        if (pkg && h3) pkg.value = h3.textContent.trim();
-      });
-    });
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = nameInput.value.trim();
-      var email = emailInput.value.trim();
-      if (!name || !/.+@.+\..+/.test(email)) {
-        (name ? emailInput : nameInput).focus();
-        return;
-      }
-      var subject = 'Consultation inquiry — ' + pkg.value;
-      var body = 'Name: ' + name + '\nEmail: ' + email + '\nPackage: ' + pkg.value +
-        '\n\nWhat I\'m launching:\n' + projectInput.value.trim();
-      window.location.href = 'mailto:Admin@MyStudioChannel.com?subject=' +
-        encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    });
-  })();
 
   /* Mobile overlay menu */
   var burger = document.getElementById('burger');

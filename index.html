@@ -5,15 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Studio Channel — Your Channel. On Air.</title>
 <meta name="description" content="We build studio-style websites that give creators the look and structure of a major network — powered by a custom plugin, built once and owned by you.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="My Studio Channel — Your Channel. On Air.">
-<meta property="og:description" content="Studio-style websites for creators. Look like a real network — built once, owned forever.">
-<meta property="og:image" content="https://raw.githubusercontent.com/agentzlab/MyStudioChannel-Remake/primetime-duel/assets/screenshot.png">
-<meta property="og:image:alt" content="MyStudioChannel Prime Time — dark cinematic hero with studio console imagery">
-<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/jpeg" href="assets/logo-bolt.jpg">
 </head>
@@ -22,7 +16,7 @@
 
 <header class="topbar" id="topbar">
   <div class="wrap topbar-inner">
-    <a class="wordmark" href="#top"><img class="wordmark-mark" src="assets/logo-dial.jpg" alt="">My<span class="gold-w">Studio</span>Channel</a>
+    <a class="wordmark" href="#top"><img class="wordmark-mark" src="assets/logo-bolt.jpg" alt="">My <span class="gold-w">Studio</span> Channel</a>
     <nav class="nav-desktop" aria-label="Primary">
       <a href="#own" data-nav>Own</a>
       <div class="nav-drop">
@@ -52,7 +46,6 @@
 </header>
 
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-  <a class="menu-wordmark" href="#top" data-menu><img src="assets/logo-dial.jpg" alt="MyStudioChannel logo">My<span class="gold-w">Studio</span>Channel</a>
   <button class="menu-close" id="menuClose" aria-label="Close menu">×</button>
   <nav class="menu-list" aria-label="Mobile">
     <div class="menu-row"><a href="#own" data-menu>Own</a></div>
@@ -88,7 +81,7 @@
   <!-- ① HERO : 4-slide crossfade slider -->
   <section class="hero" id="heroSlider">
     <div class="hero-slides" aria-hidden="true">
-      <div class="hero-slide is-active"><img src="assets/hero-studio-1.jpg" alt="Dim broadcast control room desk with mixing console and monitors, dark open space on the left"></div>
+      <div class="hero-slide is-active"><img src="assets/hero-studio-1.jpg" alt="Television control room with a wall of glowing monitors and production switcher"></div>
       <div class="hero-slide"><img src="assets/hero-studio-2.jpg" alt="Professional broadcast camera on a pedestal in a dark TV studio"></div>
       <div class="hero-slide"><img src="assets/hero-studio-3.jpg" alt="Studio lighting rig with glowing softboxes and a camera crane in haze"></div>
       <div class="hero-slide"><img src="assets/hero-studio-4.jpg" alt="Close-up of a video production switcher with glowing buttons"></div>
@@ -134,7 +127,7 @@
         </div>
       </div>
       <div class="cta-row">
-        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe1xo__uQrR6_T0VNmbP8julRgHRZGHsaoW8xqFbJYVtWV1dQ/viewform" target="_blank" rel="noopener">Start With A Consultation ↗</a>
+        <a class="btn" href="#contact">Start With A Consultation ↗</a>
         <a class="btn btn-ghost" href="#demos">View Demos ↓</a>
       </div>
       <div class="hero-progress" aria-hidden="true"><span id="heroBar"></span></div>
@@ -144,13 +137,6 @@
         <button class="hero-arrow" id="heroNext" aria-label="Next slide">&rarr;</button>
       </div>
       <p class="hero-count" aria-hidden="true"><span id="heroIndex">01</span> / 04</p>
-    </div>
-    <!-- dev font lab : pick a type combo, locked in on winner -->
-    <button class="fontlab-btn" id="fontlabBtn" aria-label="Open font lab" title="Font lab (dev)">Aa</button>
-    <div class="fontlab-panel" id="fontlabPanel" aria-hidden="true">
-      <p class="fontlab-title">Font lab <span>dev</span></p>
-      <div class="fontlab-list" id="fontlabList"></div>
-      <p class="fontlab-note">Tap a combo to preview it live. Tell me the winner and I'll lock it in.</p>
     </div>
   </section>
 
@@ -173,7 +159,7 @@
           <p>You control the content. You control your audience. You control how it grows.</p>
         </div>
         <div class="plate-frame">
-          <div class="plate-view"><img src="assets/about.jpg" alt="Broadcast control desk with illuminated gold faders in a dark studio"></div>
+          <img src="assets/about.jpg" alt="Broadcast control desk with illuminated gold faders in a dark studio">
         </div>
       </div>
       <div class="pillars">
@@ -205,7 +191,7 @@
   <section id="packages" class="pad lock">
     <div class="wrap">
       <p class="eyebrow dash">Choose Your Build</p>
-      <h2 class="h2" data-words>From creator site to <span class="goldline aurora">private network.</span></h2>
+      <h2 class="h2" data-words>From creator site to <span class="goldline">private network.</span></h2>
       <p class="sub">Three clear production levels, each built around ownership. Start with the platform that matches how you publish now — and where you want to grow.</p>
       <div class="pkgs">
         <article class="pkg">
@@ -336,7 +322,7 @@
           <div class="step">
             <span class="tl-node" aria-hidden="true"></span>
             <span class="num">01</span>
-            <h3><a class="consult-link" href="https://docs.google.com/forms/d/e/1FAIpQLSe1xo__uQrR6_T0VNmbP8julRgHRZGHsaoW8xqFbJYVtWV1dQ/viewform" target="_blank" rel="noopener">Book Your Consultation</a></h3>
+            <h3>Book Your Consultation</h3>
             <p>We start with a call to understand your goals and determine the right setup for your platform.</p>
           </div>
           <div class="step">
@@ -400,7 +386,7 @@
   </section>
 
   <!-- ⑧ FAQ -->
-  <section id="faq" class="pad lock">
+  <section class="pad lock">
     <div class="wrap">
       <p class="eyebrow">Answers</p>
       <h2 class="h2" data-words>Straight answers. <span class="goldline">No lock-in.</span></h2>
@@ -440,29 +426,7 @@
         <a href="tel:+13363031658">(336) 303-1658</a>
         <a href="mailto:Admin@MyStudioChannel.com">Admin@MyStudioChannel.com</a>
       </div>
-      <form class="cta-form" id="contactForm" novalidate>
-        <div class="form-row">
-          <label>Your name
-            <input type="text" name="name" required placeholder="Jane Creator" autocomplete="name">
-          </label>
-          <label>Email
-            <input type="email" name="email" required placeholder="you@email.com" autocomplete="email">
-          </label>
-        </div>
-        <label>Which package
-          <select name="package" id="packageSelect">
-            <option>Not sure yet</option>
-            <option>Creator Launch</option>
-            <option>Studio Pro</option>
-            <option>Network Platform</option>
-          </select>
-        </label>
-        <label>What are you launching?
-          <textarea name="project" rows="4" placeholder="Your channel, your content, your goals…"></textarea>
-        </label>
-        <button class="btn btn-ink" type="submit">Send Inquiry <span aria-hidden="true">→</span></button>
-        <p class="form-note">Submitting opens your email app with everything filled in — addressed straight to us.</p>
-      </form>
+      <a class="btn btn-ink" href="mailto:Admin@MyStudioChannel.com">Start With A Consultation ↗</a>
     </div>
   </section>
 
@@ -485,32 +449,13 @@
       </nav>
     </div>
     <div class="foot-top">
-      <a class="wordmark" href="#top"><img class="wordmark-mark" src="assets/logo-dial.jpg" alt="">My<span class="gold-w">Studio</span>Channel</a>
+      <a class="wordmark" href="#top"><img class="wordmark-mark" src="assets/logo-bolt.jpg" alt="">My <span class="gold-w">Studio</span> Channel</a>
     </div>
     <p class="foot-bottom">© 2026 My Studio Channel — Built once. Owned forever.</p>
   </div>
 </footer>
 
 <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
-
-<div class="lightbox" id="demoLightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
-  <div class="lightbox-scrim" data-lb-close></div>
-  <div class="lightbox-panel">
-    <button class="lightbox-close" data-lb-close aria-label="Close demo details">×</button>
-    <div class="lightbox-media"><img id="lbImg" src="" alt=""></div>
-    <div class="lightbox-body">
-      <p class="cat" id="lbCat"></p>
-      <h3 id="lbTitle"></h3>
-      <p class="lb-desc" id="lbDesc"></p>
-      <div class="lightbox-actions">
-        <a class="btn" id="lbVisit" href="#" target="_blank" rel="noopener" hidden>View Live Demo <span aria-hidden="true">↗</span></a>
-        <a class="btn" id="lbBuild" href="#contact">Build One Like This <span aria-hidden="true">→</span></a>
-      </div>
-    </div>
-    <button class="lightbox-arrow lb-prev" id="lbPrev" aria-label="Previous demo">←</button>
-    <button class="lightbox-arrow lb-next" id="lbNext" aria-label="Next demo">→</button>
-  </div>
-</div>
 
 <script src="app.js"></script>
 </body>
