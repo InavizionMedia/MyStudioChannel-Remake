@@ -48,6 +48,28 @@
     locks.forEach(function (s) { io.observe(s); });
   }
 
+  /* FAQ gold-wash parallax — the glow drifts slower than the scroll */
+  (function () {
+    var faq = document.getElementById('faq');
+    if (!faq || reduceMotion) return;
+    var ticking = false;
+    function paint() {
+      ticking = false;
+      var r = faq.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (r.bottom > -200 && r.top < vh + 200) {
+        var p = (r.top + r.height / 2 - vh / 2) / vh;
+        faq.style.setProperty('--faqGlow', (p * 60).toFixed(1) + 'px');
+      }
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(paint); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    paint();
+  })();
+
   /* Top bar state */
   var topbar = document.getElementById('topbar');
   function onScroll() {

@@ -49,6 +49,13 @@ section{position:relative}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* ---------- section gradient washes (Jon experiment) ---------- */
+#faq{position:relative;overflow:hidden}
+#faq::before{content:"";position:absolute;inset:-14% 0;z-index:0;background:radial-gradient(115% 70% at 50% 0%,rgba(242,183,5,.13),rgba(242,183,5,.04) 42%,transparent 68%);transform:translateY(var(--faqGlow,0px));pointer-events:none}
+#faq .wrap,#packages .wrap{position:relative;z-index:1}
+#packages{position:relative}
+#packages::before{content:"";position:absolute;inset:0;background:radial-gradient(105% 75% at 50% 100%,rgba(140,140,150,.13),transparent 65%);pointer-events:none}
+
 /* ---------- reveal : elegant fade-up ---------- */
 .lock{opacity:0;transform:translateY(22px);transition:opacity 600ms var(--ease),transform 600ms var(--ease);will-change:opacity,transform}
 .lock.locked{opacity:1;transform:none;will-change:auto}
