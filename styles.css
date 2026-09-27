@@ -214,7 +214,7 @@ body.loaded .hero-controls{opacity:1;transform:none}
 .pkg li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-size:.85em;top:.1em;font-weight:700}
 .pkg .bestfor{margin-top:auto;border-top:1px solid var(--line);padding-top:1.2rem;font-size:.95rem}
 .pkg .bestfor strong{display:block;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-weight:600}
-.pkg-cta{margin-top:1.6rem;justify-content:center;width:100%;border-radius:999px}
+.pkg-cta{margin-top:1.6rem;justify-content:center;width:100%;border-radius:2px}
 .pkg.popular .pkg-cta{background:var(--ink);color:var(--gold)}
 .pkg.popular .pkg-cta:hover{background:#000;color:var(--gold)}
 .pkg-note{margin-top:2.2rem;font-size:.95rem;color:var(--smoke);text-align:center}
