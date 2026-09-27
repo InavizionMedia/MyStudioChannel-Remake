@@ -137,13 +137,70 @@
   /* Back-to-top button — fades in once the reader is down the page */
   var toTop = document.getElementById('toTop');
   if (toTop) {
-    window.addEventListener('scroll', function () {
-      toTop.classList.toggle('show', window.scrollY > 600);
-    }, { passive: true });
+    var showTop = function () {
+      var y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      toTop.classList.toggle('show', y > 500);
+    };
+    window.addEventListener('scroll', showTop, { passive: true });
+    document.addEventListener('scroll', showTop, { passive: true });
+    showTop();
     toTop.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
   }
+
+  /* Dev font lab — hero type-combo switcher (Jon picks a winner, we lock it) */
+  (function () {
+    var combos = [
+      { id: 'prime', name: 'Prime Time', display: "'Oswald',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
+      { id: 'network', name: 'Network', display: "'Bebas Neue',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
+      { id: 'marquee', name: 'Marquee', display: "'Anton',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
+      { id: 'block', name: 'Block', display: "'Archivo Black',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" },
+      { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
+      { id: 'spartan', name: 'Spartan', display: "'League Spartan',Impact,sans-serif", body: "'Inter',system-ui,sans-serif" }
+    ];
+    var btn = document.getElementById('fontlabBtn');
+    var panel = document.getElementById('fontlabPanel');
+    var list = document.getElementById('fontlabList');
+    if (!btn || !panel || !list) return;
+    var fontsLoaded = false;
+    function loadFonts() {
+      if (fontsLoaded) return;
+      fontsLoaded = true;
+      var l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Archivo+Black&family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=League+Spartan:wght@700;800&display=swap';
+      document.head.appendChild(l);
+    }
+    function apply(id) {
+      var c = null;
+      combos.forEach(function (x) { if (x.id === id) c = x; });
+      c = c || combos[0];
+      document.documentElement.style.setProperty('--font-display', c.display);
+      document.documentElement.style.setProperty('--font-body', c.body);
+      try { localStorage.setItem('ptFontCombo', c.id); } catch (e) {}
+      list.querySelectorAll('.fontlab-opt').forEach(function (b) {
+        b.classList.toggle('is-active', b.getAttribute('data-combo') === c.id);
+      });
+    }
+    combos.forEach(function (c) {
+      var b = document.createElement('button');
+      b.className = 'fontlab-opt';
+      b.setAttribute('data-combo', c.id);
+      b.innerHTML = '<span class="ag" style="font-family:' + c.display + '">Ag</span><span class="nm">' + c.name + '</span>';
+      b.addEventListener('click', function () { apply(c.id); });
+      list.appendChild(b);
+    });
+    btn.addEventListener('click', function () {
+      loadFonts();
+      var open = panel.classList.toggle('open');
+      panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    });
+    var saved = null;
+    try { saved = localStorage.getItem('ptFontCombo'); } catch (e) {}
+    if (saved) { loadFonts(); }
+    apply(saved || 'prime');
+  })();
 
   /* Scroll-spy — highlight the nav link for the section in view */
   (function () {
