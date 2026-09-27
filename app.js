@@ -156,8 +156,10 @@
       { id: 'condensed', name: 'Condensed', display: "'Barlow Condensed',Impact,sans-serif", body: "'Barlow',system-ui,sans-serif" },
       { id: 'current', name: 'Current Site', display: "'Montserrat',system-ui,sans-serif", body: "'Montserrat',system-ui,sans-serif" },
       { id: 'mulish', name: 'Mulish', display: "'Mulish',system-ui,sans-serif", body: "'Mulish',system-ui,sans-serif" },
-      { id: 'roboto', name: 'Roboto', display: "'Roboto',system-ui,sans-serif", body: "'Roboto',system-ui,sans-serif" },
-      { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" }
+      { id: 'poppins', name: 'Poppins', display: "'Poppins',system-ui,sans-serif", body: "'Poppins',system-ui,sans-serif" },
+      { id: 'lato', name: 'Lato', display: "'Lato',system-ui,sans-serif", body: "'Lato',system-ui,sans-serif" },
+      { id: 'dmsans', name: 'DM Sans', display: "'DM Sans',system-ui,sans-serif", body: "'DM Sans',system-ui,sans-serif" },
+      { id: 'robotoslab', name: 'Roboto Slab', display: "'Roboto Slab',Georgia,serif", body: "'Roboto Slab',Georgia,serif" }
     ];
     var btn = document.getElementById('fontlabBtn');
     var panel = document.getElementById('fontlabPanel');
@@ -169,7 +171,7 @@
       fontsLoaded = true;
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Mulish:wght@400;600;700;800&family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=Montserrat:wght@400;500;700;800&family=Mulish:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&family=Lato:wght@400;700;900&family=DM+Sans:wght@400;500;700&family=Roboto+Slab:wght@400;600;700&display=swap';
       document.head.appendChild(l);
     }
     function apply(id) {
