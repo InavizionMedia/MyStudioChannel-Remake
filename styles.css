@@ -49,9 +49,9 @@ section{position:relative}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ---------- signal lock (brief §5) : decisive blur-settle reveal ---------- */
-.lock{opacity:0;transform:translateY(26px);filter:blur(7px);transition:opacity 950ms var(--ease),transform 950ms var(--ease),filter 950ms var(--ease);will-change:opacity,transform,filter}
-.lock.locked{opacity:1;transform:none;filter:blur(0);will-change:auto}
+/* ---------- reveal : elegant fade-up ---------- */
+.lock{opacity:0;transform:translateY(22px);transition:opacity 600ms var(--ease),transform 600ms var(--ease);will-change:opacity,transform}
+.lock.locked{opacity:1;transform:none;will-change:auto}
 .lock h1 .wd,.lock h2 .wd{opacity:0;transform:translateY(24px);transition:opacity 600ms var(--ease),transform 600ms var(--ease);transition-delay:calc(var(--i,0)*55ms)}
 .lock.locked h1 .wd,.lock.locked h2 .wd{opacity:1;transform:translateY(0)}
 
