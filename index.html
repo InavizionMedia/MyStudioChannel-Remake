@@ -40,20 +40,62 @@
 
 <main id="top">
 
-  <!-- ① HERO -->
-  <section class="hero">
-    <div class="hero-bg" aria-hidden="true"><img src="assets/hero.jpg" alt=""></div>
+  <!-- ① HERO : 4-slide crossfade slider -->
+  <section class="hero" id="heroSlider">
+    <div class="hero-slides" aria-hidden="true">
+      <div class="hero-slide is-active"><img src="assets/hero.jpg" alt=""></div>
+      <div class="hero-slide"><img src="assets/hero-2.jpg" alt=""></div>
+      <div class="hero-slide"><img src="assets/hero-3.jpg" alt=""></div>
+      <div class="hero-slide"><img src="assets/hero-4.jpg" alt=""></div>
+    </div>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="wrap hero-content">
-      <p class="eyebrow">For Creators Who Want More</p>
-      <h1>
-        <span class="hline" data-words>Your Channel.</span>
-        <span class="hline goldline" data-words>On Air.</span>
-      </h1>
-      <p class="sub">We build studio-style websites that give creators the look and structure of a major network — powered by a custom plugin, built once and owned by you.</p>
+      <div class="hero-copies">
+        <div class="hero-copy is-active">
+          <p class="eyebrow">For Creators Who Want More</p>
+          <h1>
+            <span class="hline" data-words>Your Content.</span>
+            <span class="hline" data-words>Your Channel.</span>
+            <span class="hline goldline" data-words>Your Studio.</span>
+          </h1>
+          <p class="sub">We build studio-style websites that give creators the look and structure of a major network — powered by a custom plugin, built once and owned by you.</p>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Look Like A Real Network</p>
+          <h1>
+            <span class="hline" data-words>Your Shows.</span>
+            <span class="hline" data-words>Your Brand.</span>
+            <span class="hline goldline" data-words>Your Network.</span>
+          </h1>
+          <p class="sub">Your platform can be organized like a professional streaming network — with structured shows, episodes, and categories that rival any major broadcaster.</p>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Podcasters &amp; Talk Show Hosts</p>
+          <h1>
+            <span class="hline" data-words>Your Voice.</span>
+            <span class="hline" data-words>Your Platform.</span>
+            <span class="hline goldline" data-words>Your Audience.</span>
+          </h1>
+          <p class="sub">Launch your podcast or talk show with a professional-grade platform that rivals any major network — without monthly platform fees or subscriber charges.</p>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Built For Every Creator</p>
+          <h1>
+            <span class="hline" data-words>Your Vision.</span>
+            <span class="hline" data-words>Your Platform.</span>
+            <span class="hline goldline" data-words>Your Legacy.</span>
+          </h1>
+          <p class="sub">Showcase your productions on a cinema-quality platform built to present your work exactly the way you intend it to be experienced.</p>
+        </div>
+      </div>
       <div class="cta-row">
         <a class="btn" href="#contact">Start With A Consultation ↗</a>
         <a class="btn btn-ghost" href="#demos">View Demos ↓</a>
+      </div>
+      <div class="hero-controls">
+        <button class="hero-arrow" id="heroPrev" aria-label="Previous slide">&larr;</button>
+        <p class="hero-count" aria-hidden="true"><span id="heroIndex">01</span> / 04</p>
+        <button class="hero-arrow" id="heroNext" aria-label="Next slide">&rarr;</button>
       </div>
     </div>
   </section>
