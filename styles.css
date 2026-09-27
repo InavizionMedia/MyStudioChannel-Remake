@@ -515,6 +515,15 @@ footer{border-top:1px solid var(--line);padding:4.5rem 0 2rem}
   .hero-grid span:nth-child(2){display:none}
 }
 
+/* ---------- section divider : gold hairline + diamond, breaks up long dark gaps ---------- */
+.section-divider{display:flex;justify-content:center;padding:2.6rem 1.25rem;position:relative}
+.section-divider::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(42% 5.5rem at 50% 50%,rgba(245,179,1,.08),transparent 70%)}
+.section-divider span{display:block;position:relative;width:min(560px,82%);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,179,1,.6),transparent)}
+.section-divider span::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;
+  transform:translate(-50%,-50%) rotate(45deg);background:var(--gold);
+  box-shadow:0 0 14px rgba(245,179,1,.85)}
 /* ---------- gold-to-black richness wash : lifts dark, empty-feeling sections ---------- */
 .goldwash{background:
   radial-gradient(110% 30rem at 50% -5rem,rgba(245,179,1,.07),transparent 70%),
