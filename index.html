@@ -906,11 +906,11 @@ footer{border-top:1px solid var(--line);background:var(--ink);padding:5rem 0 2re
       <div class="nav-item">
         <a class="nav-link" data-nav data-section="demos" href="#demos">Demos</a>
         <div class="nav-drop">
-          <a href="#demos"><span>01</span>Talk Show Land</a>
-          <a href="#demos"><span>02</span>Xtronic E-Commerce</a>
-          <a href="#demos"><span>03</span>Indie World Wide Inc.</a>
-          <a href="#demos"><span>04</span>The Starting Blocks</a>
-          <a href="#demos"><span>05</span>Every Way Woman</a>
+          <a href="#demos" data-demo-index="0"><span>01</span>Talk Show Land</a>
+          <a href="#demos" data-demo-index="1"><span>02</span>Xtronic E-Commerce</a>
+          <a href="#demos" data-demo-index="2"><span>03</span>Indie World Wide Inc.</a>
+          <a href="#demos" data-demo-index="3"><span>04</span>The Starting Blocks</a>
+          <a href="#demos" data-demo-index="4"><span>05</span>Every Way Woman</a>
         </div>
       </div>
       <div class="nav-item"><a class="nav-link" data-nav data-section="process" href="#process">Process</a></div>
@@ -938,11 +938,11 @@ footer{border-top:1px solid var(--line);background:var(--ink);padding:5rem 0 2re
       <div class="menu-row">
         <button class="menu-toggle" type="button" data-section="demos" aria-expanded="false" aria-controls="mobileDemos">Demos <span class="menu-chevron" aria-hidden="true">⌄</span></button>
         <div class="menu-sub" id="mobileDemos"><div class="menu-sub-inner">
-          <a href="#demos">Talk Show Land</a>
-          <a href="#demos">Xtronic E-Commerce</a>
-          <a href="#demos">Indie World Wide Inc.</a>
-          <a href="#demos">The Starting Blocks</a>
-          <a href="#demos">Every Way Woman</a>
+          <a href="#demos" data-demo-index="0">Talk Show Land</a>
+          <a href="#demos" data-demo-index="1">Xtronic E-Commerce</a>
+          <a href="#demos" data-demo-index="2">Indie World Wide Inc.</a>
+          <a href="#demos" data-demo-index="3">The Starting Blocks</a>
+          <a href="#demos" data-demo-index="4">Every Way Woman</a>
         </div></div>
       </div>
       <div class="menu-row"><a class="menu-main" data-section="process" href="#process">Process</a></div>
@@ -2090,6 +2090,10 @@ footer{border-top:1px solid var(--line);background:var(--ink);padding:5rem 0 2re
     overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden', 'true');
     burger.setAttribute('aria-expanded', 'false');
+    overlay.querySelectorAll('.menu-toggle').forEach(function (toggle) {
+      toggle.setAttribute('aria-expanded', 'false');
+      document.getElementById(toggle.getAttribute('aria-controls')).classList.remove('open');
+    });
     document.body.style.overflow = '';
   }
   burger.addEventListener('click', openMenu);
@@ -2201,9 +2205,27 @@ footer{border-top:1px solid var(--line);background:var(--ink);padding:5rem 0 2re
     }
     function go(index) {
       active = Math.max(0, Math.min(cards.length - 1, index));
-      row.scrollTo({ left: cards[active].offsetLeft - row.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+      if (row.scrollWidth > row.clientWidth + 1) {
+        row.scrollTo({ left: cards[active].offsetLeft - row.offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+      } else if (window.innerWidth <= 640) {
+        var topbar = document.getElementById('topbar');
+        var topOffset = (topbar ? topbar.offsetHeight : 0) + 16;
+        window.scrollTo({ top: cards[active].getBoundingClientRect().top + window.scrollY - topOffset, behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
       counter.textContent = String(active + 1).padStart(2, '0');
     }
+    document.querySelectorAll('[data-demo-index]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        var index = parseInt(link.getAttribute('data-demo-index'), 10);
+        if (row.scrollWidth <= row.clientWidth + 1 && window.innerWidth <= 640) {
+          go(index);
+        } else {
+          document.getElementById('demos').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+          requestAnimationFrame(function () { go(index); });
+        }
+      });
+    });
     prev.addEventListener('click', function () { go(active - 1); });
     next.addEventListener('click', function () { go(active + 1); });
     row.addEventListener('scroll', function () {
