@@ -940,6 +940,31 @@ footer{border-top:1px solid var(--line);background:var(--ink);padding:5rem 0 2re
 }
 .pkg:not(.popular):nth-child(3)::before{transform:rotate(180deg)}
 
+
+.ss-grid{display:grid;gap:3rem;align-items:start;grid-template-columns:minmax(0,.9fr) minmax(22rem,1.1fr)}
+.ss-note{margin-top:1.4rem;color:var(--smoke);font-size:.92rem;max-width:34rem}
+.ss-cta{margin-top:1.8rem}
+.ss-show{position:relative;isolation:isolate;overflow:hidden;padding:1.8rem;border:1px solid rgba(242,183,5,.42);border-radius:18px;background:linear-gradient(145deg,rgba(25,24,19,.9),rgba(10,10,12,.8));box-shadow:var(--shadow-panel)}
+.ss-show::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 0%,rgba(242,183,5,.12),transparent 60%);pointer-events:none}
+.ss-show-head{position:relative;display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.4rem}
+.ss-kicker{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 .3rem;font-weight:700}
+.ss-title{font-family:var(--font-display);font-weight:700;font-size:1.35rem;color:var(--bone);margin:0}
+.ss-watch{display:inline-flex;align-items:center;gap:.45rem;background:var(--gold);color:var(--ink);font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.1rem;border-radius:999px;white-space:nowrap}
+.ss-watch-tri{font-size:.65rem}
+.ss-eps{position:relative;list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.ss-eps li{display:flex;align-items:center;gap:1rem;padding:.8rem;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(255,255,255,.03)}
+.ss-thumb{flex:0 0 3.2rem;width:3.2rem;height:4.4rem;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ss-t1{background:linear-gradient(160deg,#4a3608,#141417 72%)}
+.ss-t2{background:linear-gradient(160deg,#571505,#141417 72%)}
+.ss-t3{background:linear-gradient(160deg,#0e2f1c,#141417 72%)}
+.ss-play{width:1.7rem;height:1.7rem;border-radius:50%;background:rgba(242,183,5,.92);color:#0A0A0B;font-size:.62rem;display:flex;align-items:center;justify-content:center;padding-left:.15rem}
+.ss-meta{display:grid;gap:.15rem;flex:1;min-width:0}
+.ss-ep{font-size:.72rem;letter-spacing:.22em;color:var(--gold);font-weight:700}
+.ss-name{color:var(--bone);font-weight:600;font-size:.95rem}
+.ss-dur{color:var(--smoke);font-size:.82rem}
+.ss-foot{position:relative;margin:1.3rem 0 0;text-align:center;color:var(--smoke);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+@media (max-width:899px){.ss-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body class="is-preloading">
@@ -1324,6 +1349,56 @@ footer{border-top:1px solid var(--line);background:var(--ink);padding:5rem 0 2re
   </section>
 
   <!-- ⑤ DEMOS -->
+  
+  <section id="shorts-series" class="pad lock editorial-section ambient-section">
+    <div class="wrap ss-grid">
+      <div class="ss-copy">
+        <p class="eyebrow">New from YouTube</p>
+        <h2 class="h2">Turn Your Shorts Into a <span class="accent">Bingeable Series</span></h2>
+        <p class="sub">YouTube just launched Shorts Series &mdash; seasons, episodes, custom thumbnails, and a watch-in-order button built right into the Shorts feed. We set the whole thing up and run it for you, so your short-form content plays like a real show on mobile, web, and TV.</p>
+        <ul class="gold-list">
+          <li>Series concept and season planning &mdash; your show&rsquo;s premise, story arc, and episode count</li>
+          <li>Episode structuring, ordering, and numbering for seamless sequential playback</li>
+          <li>Custom thumbnails designed for the series and every episode</li>
+          <li>Full setup inside YouTube Studio &mdash; series, seasons, and metadata</li>
+          <li>Publishing cadence and ongoing episode management</li>
+          <li>Performance tracking across the series &mdash; retention, completion, and growth</li>
+        </ul>
+        <p class="ss-note">Shorts Series is rolling out to YouTube Partner Program channels now &mdash; we&rsquo;ll check your channel&rsquo;s eligibility and get you queued up.</p>
+        <p class="ss-cta"><a class="btn aurora-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe1xo__uQrR6_T0VNmbP8julRgHRZGHsaoW8xqFbJYVtWV1dQ/viewform" target="_blank" rel="noopener">Get Your Series Set Up &#8599;</a></p>
+      </div>
+      <div class="ss-visual">
+        <div class="ss-show">
+          <div class="ss-show-head">
+            <div>
+              <p class="ss-kicker">Season 1</p>
+              <p class="ss-title">Your Series</p>
+            </div>
+            <span class="ss-watch"><span class="ss-watch-tri">&#9654;</span> Watch Series</span>
+          </div>
+          <ol class="ss-eps">
+            <li>
+              <span class="ss-thumb ss-t1"><span class="ss-play">&#9654;</span></span>
+              <span class="ss-meta"><span class="ss-ep">EP 01</span><span class="ss-name">The Hook</span></span>
+              <span class="ss-dur">0:58</span>
+            </li>
+            <li>
+              <span class="ss-thumb ss-t2"><span class="ss-play">&#9654;</span></span>
+              <span class="ss-meta"><span class="ss-ep">EP 02</span><span class="ss-name">The Twist</span></span>
+              <span class="ss-dur">0:47</span>
+            </li>
+            <li>
+              <span class="ss-thumb ss-t3"><span class="ss-play">&#9654;</span></span>
+              <span class="ss-meta"><span class="ss-ep">EP 03</span><span class="ss-name">The Payoff</span></span>
+              <span class="ss-dur">1:02</span>
+            </li>
+          </ol>
+          <p class="ss-foot">Plays in order &middot; Mobile &middot; Web &middot; TV</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="demos" class="pad lock ambient-section">
     <div class="wrap">
       <p class="eyebrow">On Air</p>
