@@ -1,13 +1,14 @@
 # MyStudioChannel-Remake
+**Branch policy:** work happens on the latest version branch — list all branches first, never assume the GitHub default is current. Working line: `main`.
 
 > **Your Content. Your Channel. Your Studio.** — a cinematic rebuild of My Studio Channel's creator-platform site.
 
-[![GitHub Pages](https://github.com/agentzlab/MyStudioChannel-Remake/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/agentzlab/MyStudioChannel-Remake/actions/workflows/pages/pages-build-deployment)
-![Last commit](https://img.shields.io/github/last-commit/agentzlab/MyStudioChannel-Remake)
-![Repo size](https://img.shields.io/github/repo-size/agentzlab/MyStudioChannel-Remake)
+[![GitHub Pages](https://github.com/InavizionMedia/MyStudioChannel-Remake/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/InavizionMedia/MyStudioChannel-Remake/actions/workflows/pages/pages-build-deployment)
+![Last commit](https://img.shields.io/github/last-commit/InavizionMedia/MyStudioChannel-Remake)
+![Repo size](https://img.shields.io/github/repo-size/InavizionMedia/MyStudioChannel-Remake)
 ![Static site](https://img.shields.io/badge/site-static-blue)
 
-**Live preview:** https://agentzlab.github.io/MyStudioChannel-Remake/
+**Live preview:** https://inavizionmedia.github.io/MyStudioChannel-Remake/
 
 ![MyStudioChannel remake — dark cinematic hero](assets/screenshot.png)
 
@@ -17,7 +18,7 @@ A from-scratch remake of [mystudiochannel.com](https://mystudiochannel.com/) —
 
 This build applies the winning patterns from the **DigitalStudioz Baseline bake-off** (Trinity's entry won Jon's verdict): the loader curtain + progress reveal, word-stagger hero typography, ghost display headings, scroll parallax, fullscreen menu overlay, consultation modal — all rebuilt in MSC's own near-black/gold identity with generated cinematic imagery throughout.
 
-All copy is the real thing, pulled verbatim from the live site and the private source repo (`jonbeatz/MyStudioChannel`): the 4-slide hero carousel, stats band (21+ / 100% / 24/7 / $0), packages ($5,800 / $10,800 Most Popular / $18,800), the 5 demos, 4 real testimonials, 4-step process, experience/lineage, FAQ with real answers, and contact details.
+All copy is the real thing, pulled verbatim from the live site and the private source repo (`InavizionMedia/MyStudioChannel-Original-Site`): the 4-slide hero carousel, stats band (21+ / 100% / 24/7 / $0), packages ($5,800 / $10,800 Most Popular / $18,800), the 5 demos, 4 real testimonials, 4-step process, experience/lineage, FAQ with real answers, and contact details.
 
 ## Design language
 
@@ -36,7 +37,7 @@ All copy is the real thing, pulled verbatim from the live site and the private s
 | Imagery | AI-generated cinematic plates, inlined |
 | Hosting | GitHub Pages (this repo, `main`) |
 
-The source site (`jonbeatz/MyStudioChannel`, private) is Next.js + Payload CMS. The remake is a static rebuild — no CMS, no build step. Demo only.
+The source site (`InavizionMedia/MyStudioChannel-Original-Site`, private) is Next.js + Payload CMS. The remake is a static rebuild — no CMS, no build step. Demo only.
 
 ## Project structure
 
