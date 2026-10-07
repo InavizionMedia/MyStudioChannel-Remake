@@ -10,7 +10,7 @@
 
 **Live preview:** https://inavizionmedia.github.io/MyStudioChannel-Remake/
 
-![MyStudioChannel remake — dark cinematic hero](assets/screenshot.png)
+![MyStudioChannel remake — dark cinematic hero](assets/screenshot.png?v=20261007d)
 
 ## What's inside
 
